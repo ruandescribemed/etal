@@ -163,20 +163,26 @@ export function startHalftone() {
       trail[i + 1] = y;
       trail[i + 2] = gsap.ticker.time;
     };
+    // Hover is the mouse's: a finger moving on the hero is a scroll.
     const move = (e: PointerEvent) => {
-      if (e.pointerType !== 'mouse' && e.buttons === 0) return;
+      if (e.pointerType !== 'mouse') return;
       pointer[2] = 1;
       track(e);
     };
-    const down = (e: PointerEvent) => {
+    const tap = (e: PointerEvent) => {
       const i = (nextRipple++ % RIPPLES) * 3;
       ripples[i] = e.clientX;
       ripples[i + 1] = e.clientY + scrollY;
       ripples[i + 2] = gsap.ticker.time;
-      pointer[2] = 1;
       track(e);
     };
-    const up = (e: PointerEvent) => { if (e.pointerType !== 'mouse') pointer[2] = 0; };
+    const down = (e: PointerEvent) => {
+      if (e.pointerType !== 'mouse') return;
+      pointer[2] = 1;
+      tap(e);
+    };
+    // A finger taps on lift: a touch that turns into a scroll ends in pointercancel, never here.
+    const up = (e: PointerEvent) => { if (e.pointerType !== 'mouse') tap(e); };
     const away = () => { pointer[2] = 0; };
     hero.addEventListener('pointermove', move);
     hero.addEventListener('pointerdown', down);
