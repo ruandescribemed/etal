@@ -385,24 +385,38 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
 .board__time--end { color: var(--led-dim); }
 .board__title { font-size: var(--t-m); font-weight: 560; letter-spacing: -0.01em; }
 
-/* ── Talks (black) ────────────────────────────────────────────────────────────────── */
+/* ── Talks (black): a lineup, the people first ────────────────────────────────────── */
 .talks { padding: calc(var(--u) * 10) var(--gutter) calc(var(--u) * 12); }
-.talks__list { border-bottom: 1px solid var(--c-line); }
-.talk {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: 0.75rem;
-  padding-block: calc(var(--u) * 2.5) calc(var(--u) * 3);
-  border-top: 1px solid var(--c-line);
-}
-.talk__when { grid-column: 1 / span 4; grid-row: 1 / span 2; display: grid; align-content: start; gap: 0.4rem; }
-.talk__stamp { font-size: var(--t-m); color: var(--lime); }
+.talks__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--u) * 5) var(--gutter); }
+.talk { display: grid; align-content: start; gap: 0.55rem; }
+.talk__photo { position: relative; margin-bottom: 0.45rem; }
+.talk__stamp { position: absolute; z-index: 1; left: 0; top: 0; padding: 0.4em 0.55em; background: var(--noite); font-size: var(--t-s); color: var(--lime); }
 .talk__format { font-size: var(--t-s); color: var(--noite-muted); }
-.talk__title { grid-column: 5 / -1; max-width: 26ch; font-size: var(--t-l); font-weight: 680; line-height: 1.08; letter-spacing: -0.025em; }
-.talk__who { grid-column: 5 / -1; display: flex; flex-wrap: wrap; gap: 0.2rem 0.85rem; font-size: var(--t-s); }
+.talk__title { max-width: 24ch; font-size: var(--t-m); font-weight: 680; line-height: 1.12; letter-spacing: -0.02em; }
+.talk__who { display: grid; gap: 0.15rem; font-size: var(--t-s); }
 .talk__name { font-weight: 660; }
 .talk__role, .talk__who--tba { color: var(--noite-muted); }
+/* The panel shows the person in lime through its square dots; when the card fires (reading line or
+   hover) the photo comes in colour and the dots turn round. */
+.talk__face { --dot: 5px; position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 4 / 5; background: var(--noite); }
+.talk__face img {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.25) brightness(1.1);
+  mask: linear-gradient(90deg, #000 70%, transparent 0) 0 0 / var(--dot) var(--dot), linear-gradient(#000 70%, transparent 0) 0 0 / var(--dot) var(--dot);
+  mask-composite: intersect;
+  transition: filter 1s var(--ease-out);
+}
+.talk__face::after { content: ''; position: absolute; inset: 0; background: var(--lime); mix-blend-mode: multiply; pointer-events: none; transition: opacity 1s var(--ease-out); }
+.talk:is(.is-fired, :hover) .talk__face img {
+  filter: none;
+  mask: radial-gradient(circle, #000 64%, transparent 68%) 0 0 / var(--dot) var(--dot);
+  transition-duration: 0.15s;
+}
+.talk:is(.is-fired, :hover) .talk__face::after { opacity: 0; transition-duration: 0.15s; }
+.talk__face--off { display: grid; place-items: center; outline: 1px solid var(--c-line); outline-offset: -1px; }
+.talk__face--off::after { content: none; }
+.talk__off { position: relative; font-size: var(--t-s); color: var(--led-dim); }
+.talk__off--lit { font-size: var(--t-xl); color: var(--lime); }
 
 /* ── Courses (green) ──────────────────────────────────────────────────────────────── */
 .courses {
@@ -573,6 +587,7 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
 @media (max-width: 1023px) {
   .header__nav { display: none; }
   .header__toggle { display: inline-flex; }
+  .talks__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .courses__aside { grid-column: 1 / span 5; }
   .courses__list { grid-column: 6 / -1; }
   .venue__plot { grid-column: 1 / span 6; }
@@ -599,9 +614,7 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   .board__time { font-size: var(--t-s); }
   .board__title { grid-column: 1 / -1; font-size: var(--t-body); }
 
-  .talk { grid-template-columns: 1fr; }
-  .talk__when { grid-column: 1; grid-row: auto; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 0.9rem; }
-  .talk__title, .talk__who { grid-column: 1; }
+  .talks__list { grid-template-columns: 1fr; }
 
   .courses { grid-template-columns: 1fr; row-gap: calc(var(--u) * 4); }
   .courses__aside { grid-column: 1; position: static; }

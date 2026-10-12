@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { dayById, talks, type Speaker } from '@/data/site';
 
 function Who({ speaker }: { speaker: Speaker }) {
@@ -11,6 +12,38 @@ function Who({ speaker }: { speaker: Speaker }) {
       );
     case 'tba':
       return <p className="talk__who talk__who--tba">{speaker.note}</p>;
+  }
+}
+
+const initials = (name: string) =>
+  name
+    .split(' ')
+    .filter((_, i, words) => i === 0 || i === words.length - 1)
+    .map((word) => word.charAt(0))
+    .join('');
+
+// A panel switched off: lit initials once the name is out, "a confirmar" before that.
+function Off({ label, lit }: { label: string; lit: boolean }) {
+  return (
+    <div className="talk__face talk__face--off">
+      <span className="lattice lattice--lime" />
+      <span className={`talk__off led${lit ? ' talk__off--lit' : ''}`}>{label}</span>
+    </div>
+  );
+}
+
+function Face({ speaker }: { speaker: Speaker }) {
+  switch (speaker.kind) {
+    case 'announced':
+      return speaker.photo ? (
+        <div className="talk__face">
+          <Image src={speaker.photo} alt="" fill sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" />
+        </div>
+      ) : (
+        <Off label={initials(speaker.name)} lit />
+      );
+    case 'tba':
+      return <Off label="A confirmar" lit={false} />;
   }
 }
 
@@ -28,12 +61,13 @@ export function Talks() {
           const day = dayById(talk.day);
           return (
             <li className="talk" key={talk.slug} data-fire>
-              <p className="talk__when">
+              <div className="talk__photo">
+                <Face speaker={talk.speaker} />
                 <span className="talk__stamp led">
                   {day.weekday.slice(0, 3)} {talk.start}
                 </span>
-                <span className="talk__format">{talk.format}</span>
-              </p>
+              </div>
+              <span className="talk__format">{talk.format}</span>
               <h3 className="talk__title">{talk.title}</h3>
               <Who speaker={talk.speaker} />
             </li>

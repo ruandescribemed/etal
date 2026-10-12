@@ -18,6 +18,8 @@ Red was then dropped wherever it sat on green or filled a surface (fired numbers
 
 The hero first switched on with a stepped-opacity flicker (an LED sign booting); the owner disliked it. Of four entrances prototyped (that flicker, letters firing at random, a column scanning the panel, the type rising while the halftone grows), the owner chose the last.
 
+Of four ways to show the speakers prototyped (no photos, an avatar by the name, a lineup of portraits, one sticky screen), the owner chose the lineup.
+
 ## Concept
 
 ```
@@ -40,7 +42,7 @@ The concept beyond the hero:
 - **Color fields as screens of the panel**, alternating: green (campo), black (noite), lime (lima). The border between two fields is a row of pixels, not a straight line.
 - **Ticker:** one black LED strip scrolling the event info, faster when the page scrolls.
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
-- **Talks:** each time stamp fires as its row crosses the reading line.
+- **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. No photo yet: the panel stays off, with lit initials.
 - **Transition:** IF squares fill the screen from where you clicked; on the new page they fire (turn round) and go out.
 - **404:** a panel where nothing lights up: "nenhum neurônio respondeu".
 

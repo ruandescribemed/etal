@@ -35,7 +35,7 @@ export type Session = {
 };
 
 export type Speaker =
-  | { kind: 'announced'; name: string; role: string }
+  | { kind: 'announced'; name: string; role: string; photo: string | null } // photo: a path under public/speakers
   | { kind: 'tba'; note: string };
 
 export type Talk = {
@@ -145,7 +145,7 @@ export const talks: Talk[] = [
     title: 'O que um modelo de linguagem sabe, e o que ele só parece saber',
     day: 'qui',
     start: '13:00',
-    speaker: { kind: 'announced', name: 'Marina Albuquerque', role: 'Pesquisadora em processamento de linguagem natural' },
+    speaker: { kind: 'announced', name: 'Marina Albuquerque', role: 'Pesquisadora em processamento de linguagem natural', photo: null },
     placeholder: true,
   },
   {
@@ -163,7 +163,7 @@ export const talks: Talk[] = [
     title: 'Visão computacional na caatinga: contando o que a câmera vê',
     day: 'sex',
     start: '07:30',
-    speaker: { kind: 'announced', name: 'Rafael Nogueira', role: 'Professor e pesquisador em visão computacional' },
+    speaker: { kind: 'announced', name: 'Rafael Nogueira', role: 'Professor e pesquisador em visão computacional', photo: null },
     placeholder: true,
   },
   {
@@ -190,7 +190,7 @@ export const talks: Talk[] = [
     title: 'Viés, dados e decisões: quem responde pelo que a máquina aprende',
     day: 'sex',
     start: '13:00',
-    speaker: { kind: 'announced', name: 'Lívia Fernandes', role: 'Advogada e pesquisadora em direito digital' },
+    speaker: { kind: 'announced', name: 'Lívia Fernandes', role: 'Advogada e pesquisadora em direito digital', photo: null },
     placeholder: true,
   },
 ];
