@@ -4,8 +4,9 @@ export function Venue() {
   const { venue } = site;
   return (
     <section className="venue field field--noite" id="local" data-tone="noite" data-edge aria-labelledby="local-title">
-      {/* Pau dos Ferros as the one fired LED of the panel, plotted on its own coordinates. */}
-      <div className="venue__plot" aria-hidden="true">
+      {/* Pau dos Ferros as the one fired LED of the panel, plotted on its own coordinates. A click opens
+          the map; the "Abrir no mapa" link is the accessible one. */}
+      <a className="venue__plot" href={venue.mapUrl} target="_blank" rel="noopener noreferrer" aria-hidden="true" tabIndex={-1}>
         <div className="lattice lattice--lime" />
         <span className="venue__axis venue__axis--x" />
         <span className="venue__axis venue__axis--y" />
@@ -13,7 +14,7 @@ export function Venue() {
         <span className="venue__pin" />
         <span className="venue__label venue__label--lat led">6°06′ S</span>
         <span className="venue__label venue__label--lng led">38°12′ O</span>
-      </div>
+      </a>
       <div className="venue__text">
         <h2 className="section-title led" id="local-title" data-split="lines">
           Local
