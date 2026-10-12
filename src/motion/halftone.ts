@@ -27,6 +27,7 @@ uniform vec3 uRipples[${RIPPLES}];
 uniform vec3 uCampo;
 uniform vec3 uLime;
 uniform vec3 uPonto;
+uniform float uStart; // uTime when the field started growing
 
 const float SWELL = 0.5;    // seconds per e-fold of a swollen square
 const float FIRE = 0.9;     // seconds per e-fold of a fired square
@@ -52,6 +53,8 @@ void main() {
     : mix(0.35, 1.0, smoothstep(uCell, uCell * 4.0, center.y));
   float edge = 0.05 * sin(v * 5.0 + uTime * 0.6) + 0.025 * sin(v * 13.0 - uTime * 0.9);
   float g = smoothstep(mix(0.5, 0.3, uPortrait), 0.97, u + edge) * band;
+  // Switching on: the squares grow from nothing, the edge first, toward the title.
+  g *= 1.0 - pow(2.0, -10.0 * clamp(uTime - uStart - (1.0 - u) * 0.8, 0.0, 1.0));
   float zone = uPortrait > 0.5 ? smoothstep(0.15, 0.35, u) * band : smoothstep(uZone, uZone + uResolution.x * 0.2, center.x);
   if (g <= 0.0 && zone <= 0.0) { gl_FragColor = vec4(0.0); return; }
 
@@ -106,6 +109,7 @@ const uniforms = {
   uCampo: { value: rgb('#5aa323') },
   uLime: { value: rgb('#7dd13f') },
   uPonto: { value: rgb('#ed3237') },
+  uStart: { value: 0 },
 };
 let nextTrail = 0;
 let nextRipple = 0;
@@ -132,6 +136,8 @@ export function startHalftone() {
     };
     measure();
     addEventListener('resize', measure);
+    // The field grows once GL is up: on a late boot it follows the type instead of popping in grown.
+    uniforms.uStart.value = gsap.ticker.time;
     trail.fill(-1);
     ripples.fill(-1);
     setBackgroundActive(scrollY < uniforms.uHeroH.value);

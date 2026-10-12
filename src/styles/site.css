@@ -278,16 +278,14 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   margin-left: -0.03em;
 }
 .hero__line { display: block; }
-/* The panel switching on: works in CSS alone, before any script */
-.motion .hero__line { animation: boot 1.2s steps(1) both; }
-.motion .hero__line:nth-child(2) { animation-delay: 0.14s; }
-.motion .hero__logo .logo { animation: boot 1.2s steps(1) both; }
-@keyframes boot {
-  0%, 30% { opacity: 0.14; }
-  34% { opacity: 1; }
-  40% { opacity: 0.35; }
-  46%, 100% { opacity: 1; }
-}
+/* The panel switching on, in CSS alone before any script: the type rises into place letter by letter,
+   like the titles below; the halftone grows from the edge once GL is up (motion/halftone). */
+.motion .hero__line { clip-path: inset(-0.4em -0.1em 0 -0.1em); }
+.motion .hero__line:nth-child(2) { --line: 1; }
+.motion .hero__char { display: inline-block; animation: rise 1.2s var(--ease-out) calc(100ms + var(--line, 0) * 90ms + var(--i) * 22ms) both; }
+@keyframes rise { from { translate: 0 105%; } }
+.motion .hero__logo .logo { animation: logo-rise 1.2s var(--ease-out) both; }
+@keyframes logo-rise { from { opacity: 0; translate: 0 1rem; } }
 .motion .hero__label, .motion .hero__name, .motion .hero__meta { animation: settle 1s var(--ease-out) 0.45s both; }
 @keyframes settle { from { opacity: 0; translate: 0 0.75rem; } }
 .hero__meta {

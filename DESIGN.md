@@ -16,6 +16,8 @@ The first LED hero (full green field, white lit cells running through the title)
 
 Red was then dropped wherever it sat on green or filled a surface (fired numbers on green, ::selection, the red e-sports field, the header over it). Of three prototyped palettes the owner chose "Lima": red only fires on black; on green, firing lights a black cell with lime LEDs; e-sports became a lime screen.
 
+The hero first switched on with a stepped-opacity flicker (an LED sign booting); the owner disliked it. Of four entrances prototyped (that flicker, letters firing at random, a column scanning the panel, the type rising while the halftone grows), the owner chose the last.
+
 ## Concept
 
 ```
@@ -23,7 +25,7 @@ Idea:        ETAL 2026 is an LED panel made of the IF grid: every square is a pi
              When the network thinks, the pixels light up; when they fire, they turn round: the red
              dot on black, a lit black cell on green.
 Metaphor:    Stadium scoreboard / festival LED panel, built with the IF module (squares, one circle).
-Signature:   Hero panel: on black, the giant dot-matrix title boots like an LED sign. Beside it a
+Signature:   Hero panel: on black, the giant dot-matrix title rises into place letter by letter. Beside it a
              halftone of green IF squares fades toward the title by shrinking (full squares at the
              edge, nothing near the words); the pointer swells and lights them, crossed squares fire
              (round, red), a tap sends a ripple. A WebGL shader on the panel's grid.
@@ -68,7 +70,7 @@ No secondary grey text on green or lime: hierarchy there comes from size and wei
 
 ## Motion
 
-- Hero boot in CSS (stepped opacity, works before JS); the halftone and its hover in a GL shader, with a static CSS halftone when GL is off.
+- Hero entrance in CSS (the type rises letter by letter, works before JS); the halftone and its hover in a GL shader, growing from the edge once GL is up, with a static CSS halftone when GL is off.
 - Scroll: Doto labels fire as they cross the reading line (CSS transition of `font-variation-settings`).
-- Reduced motion: no GL, no ticker motion, no boot; fired states stay static.
+- Reduced motion: no GL, no ticker motion, no entrance; fired states stay static.
 - No loader.

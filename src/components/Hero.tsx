@@ -20,7 +20,12 @@ export function Hero() {
           <p className="hero__title led">
             {site.theme.lines.map((line) => (
               <span className="hero__line" key={line}>
-                {line}
+                <span className="sr-only">{line}</span>
+                {[...line].map((char, i) => (
+                  <span className="hero__char" key={i} style={{ '--i': i }} aria-hidden="true">
+                    {char}
+                  </span>
+                ))}
               </span>
             ))}
           </p>
