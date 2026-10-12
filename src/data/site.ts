@@ -111,11 +111,6 @@ export const nav = [
 export const about = {
   statement:
     'O ETAL junta estudantes, professores e quem trabalha com tecnologia no Alto Oeste Potiguar para três dias de palestras, minicursos e competição. Em 2026 o assunto é inteligência artificial: como ela funciona, onde ela erra e o que dá para construir com ela a partir de Pau dos Ferros.',
-  facts: [
-    { value: '2015', label: 'ano da primeira edição' },
-    { value: '8ª', label: 'edição do encontro' },
-    { value: '3', label: 'dias de programação, de quarta a sexta' },
-  ],
 };
 
 export const days: Day[] = [
