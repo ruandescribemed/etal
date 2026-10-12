@@ -557,7 +557,7 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   color: var(--noite-muted);
 }
 .footer__credit { display: inline-flex; align-items: center; gap: 0.5em; vertical-align: middle; padding-block: 0.3rem; color: var(--noite-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
-.footer__avatar { width: 1.75rem; height: 1.75rem; border-radius: var(--radius); }
+.footer__avatar { width: 1.75rem; height: 1.75rem; border-radius: 50%; }
 
 /* ── 404 (black): a panel where nothing lights up ─────────────────────────────────── */
 .missing {
