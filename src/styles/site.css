@@ -71,6 +71,7 @@ body { font-variation-settings: "wdth" 100; }
   transition-duration: 0.15s;
   transition-timing-function: var(--ease-fire);
 }
+.field--campo :is(.is-fired .led, .led.is-fired, a:hover .led, a:focus-visible .led) .node { background: var(--lime); }
 .tnum { font-variant-numeric: tabular-nums; }
 .node {
   display: inline-block;
