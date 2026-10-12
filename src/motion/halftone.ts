@@ -132,10 +132,7 @@ export function startHalftone() {
       uniforms.uPortrait.value = r.width < r.height ? 1 : 0;
       // Portrait: the field fills the tallest empty gap of the hero, wherever the text leaves it.
       const inner = hero.querySelector('.hero__inner')?.getBoundingClientRect() ?? r;
-      const blocks = [logo, theme, hero.querySelector('.hero__meta')]
-        .flatMap((el) => (el ? [el.getBoundingClientRect()] : []))
-        .filter((b) => b.height > 0)
-        .sort((a, b) => a.top - b.top);
+      const blocks = [logo, theme].map((el) => el.getBoundingClientRect()).sort((a, b) => a.top - b.top);
       const edges = [inner.top, ...blocks.flatMap((b) => [b.top, b.bottom]), inner.bottom];
       let [top, bottom] = [edges[0], edges[1]];
       for (let i = 2; i + 1 < edges.length; i += 2) if (edges[i + 1] - edges[i] > bottom - top) [top, bottom] = [edges[i], edges[i + 1]];

@@ -76,9 +76,10 @@ export const site = {
   url: 'https://etal.nadic.com.br',
   description:
     'O VIII ETAL acontece de 2 a 4 de dezembro de 2026 no IFRN Pau dos Ferros, com palestras, minicursos e e-sports sobre inteligência artificial.',
-  theme: { label: 'Tema de 2026', lines: ['Inteligência', 'Artificial'], placeholder: true },
+  theme: { lines: ['Inteligência', 'Artificial'], placeholder: true },
   dates: {
     label: '2 a 4 de dezembro de 2026',
+    short: '2–4 dez',
     weekdays: 'de quarta a sexta',
     start: '2026-12-02',
     end: '2026-12-04',

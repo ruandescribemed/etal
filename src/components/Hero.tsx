@@ -16,7 +16,9 @@ export function Hero() {
         </h1>
 
         <div className="hero__theme">
-          <p className="hero__label led">{site.theme.label}</p>
+          <p className="hero__label led">
+            {site.dates.short} · {site.venue.city}, {site.venue.region}
+          </p>
           <p className="hero__title led">
             {site.theme.lines.map((line) => (
               <span className="hero__line" key={line}>
@@ -30,21 +32,6 @@ export function Hero() {
             ))}
           </p>
         </div>
-
-        <dl className="hero__meta">
-          <div>
-            <dt className="label">Quando</dt>
-            <dd>
-              {site.dates.label}, {site.dates.weekdays}
-            </dd>
-          </div>
-          <div>
-            <dt className="label">Onde</dt>
-            <dd>
-              {site.venue.name}, {site.venue.city}, {site.venue.region}
-            </dd>
-          </div>
-        </dl>
       </div>
     </section>
   );

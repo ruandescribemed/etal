@@ -22,6 +22,8 @@ Of four ways to show the speakers prototyped (no photos, an avatar by the name, 
 
 Of the hero layouts prototyped (a centered column, the title as a full-width sign, the mark as the hero, then sizes and order inside the original split), the owner kept the split with everything in one block at the bottom: mark, theme, info, the dark above them.
 
+The hero's info was too much text (a ruled block, "Quando / Onde" labels). Of four organizations prototyped (as it was, one line under the title, beside the name, an LED tag), the owner chose the LED tag: dates and place take the tag above the title ("2–4 dez · Pau dos Ferros, RN"), and "Tema de 2026" goes.
+
 ## Concept
 
 ```

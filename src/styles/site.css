@@ -249,11 +249,12 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 1fr auto auto auto;
+  grid-template-rows: 1fr auto auto;
   column-gap: var(--gutter);
   row-gap: calc(var(--u) * 2);
 }
-/* One block at the bottom (mark, theme, info); the dark above it is the panel's. */
+/* One block at the bottom (mark, then the theme under its LED tag of dates and place); the dark above
+   it is the panel's. */
 .hero__logo { grid-column: 1 / span 3; grid-row: 2; margin-bottom: calc(var(--u) * 2); }
 .hero__logo .logo { width: min(100%, 14rem); }
 .hero__name { display: block; margin-top: calc(var(--u) * 1.25); font-size: var(--t-s); font-weight: 650; color: var(--c-muted); }
@@ -287,20 +288,9 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
 @keyframes rise { from { translate: 0 105%; } }
 .motion .hero__logo .logo { animation: logo-rise 1.2s var(--ease-out) both; }
 @keyframes logo-rise { from { opacity: 0; translate: 0 1rem; } }
-.motion .hero__label, .motion .hero__name, .motion .hero__meta { animation: settle 1s var(--ease-out) 0.45s both; }
+.motion .hero__label, .motion .hero__name { animation: settle 1s var(--ease-out) 0.45s both; }
 @keyframes settle { from { opacity: 0; translate: 0 0.75rem; } }
-.hero__meta {
-  grid-column: 1 / span 7;
-  grid-row: 4;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: var(--gutter);
-  border-top: 2px solid var(--led);
-  padding-top: calc(var(--u) * 1.5);
-}
-.hero__meta .label { color: var(--led); }
 .label { display: block; margin-bottom: 0.3rem; font-family: var(--f-display); font-weight: 900; font-size: var(--t-s); text-transform: uppercase; }
-.hero__meta dd { font-weight: 560; max-width: 26ch; }
 
 /* ── Ticker: one LED strip ────────────────────────────────────────────────────────── */
 .ticker {
@@ -603,7 +593,6 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   .hero__halftone { display: none; }
   .hero__theme { grid-column: 1 / -1; }
   .hero__label { font-size: var(--t-s); }
-  .hero__meta { grid-column: 1 / -1; grid-template-columns: 1fr; row-gap: calc(var(--u) * 1.5); }
 
   .section-head { grid-template-columns: 1fr; row-gap: calc(var(--u) * 1.5); }
   .section-head .section-title, .section-note { grid-column: 1; }
