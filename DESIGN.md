@@ -20,6 +20,8 @@ The hero first switched on with a stepped-opacity flicker (an LED sign booting);
 
 Of four ways to show the speakers prototyped (no photos, an avatar by the name, a lineup of portraits, one sticky screen), the owner chose the lineup.
 
+Of the hero layouts prototyped (a centered column, the title as a full-width sign, the mark as the hero, then sizes and order inside the original split), the owner kept the split with everything in one block at the bottom: mark, theme, info, the dark above them.
+
 ## Concept
 
 ```

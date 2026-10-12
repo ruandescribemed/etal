@@ -249,12 +249,13 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: 1fr auto auto auto;
   column-gap: var(--gutter);
   row-gap: calc(var(--u) * 2);
 }
-.hero__logo { grid-column: 1 / span 4; grid-row: 1; align-self: start; }
-.hero__logo .logo { width: min(100%, 22rem); }
+/* One block at the bottom (mark, theme, info); the dark above it is the panel's. */
+.hero__logo { grid-column: 1 / span 3; grid-row: 2; margin-bottom: calc(var(--u) * 2); }
+.hero__logo .logo { width: min(100%, 14rem); }
 .hero__name { display: block; margin-top: calc(var(--u) * 1.25); font-size: var(--t-s); font-weight: 650; color: var(--c-muted); }
 .hero__theme {
   grid-column: 1 / span 7;
@@ -595,10 +596,10 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   .venue__text { grid-column: 7 / -1; }
 }
 @media (max-width: 767px) {
-  .hero__inner { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto 1fr auto auto; }
+  .hero__inner { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .hero__logo { grid-column: 1 / -1; margin-top: calc(var(--u) * 1.5); }
-  .hero__logo .logo { width: min(88%, 22rem); }
-  .hero { --cell: 16px; } /* a finer halftone: the band between logo and title is short */
+  .hero__logo .logo { width: min(60%, 13rem); }
+  .hero { --cell: 16px; } /* a finer halftone on phones */
   .hero__halftone { display: none; }
   .hero__theme { grid-column: 1 / -1; }
   .hero__label { font-size: var(--t-s); }

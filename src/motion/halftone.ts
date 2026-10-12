@@ -1,6 +1,6 @@
 // The hero field. On black, a halftone of IF squares: full green squares at the right edge, shrinking
-// to nothing toward the title, with an edge that breathes (phones: only the empty band between the
-// logo and the title). The pointer swells the squares around it and lights them (lime); the squares
+// to nothing toward the title, with an edge that breathes (phones: only the empty band above the
+// text). The pointer swells the squares around it and lights them (lime); the squares
 // it crosses may fire (red, round); a tap sends a ripple of swollen squares.
 // The pointer trail and the ripples are uniform arrays of recent events, so the shader keeps no state
 // between frames. Without GL (no WebGL, Save-Data, reduced motion) the CSS halftone stays visible.
@@ -130,8 +130,17 @@ export function startHalftone() {
       uniforms.uCell.value = cell;
       uniforms.uHeroH.value = r.bottom + scrollY;
       uniforms.uPortrait.value = r.width < r.height ? 1 : 0;
-      band[0] = logo.getBoundingClientRect().bottom + scrollY + cell;
-      band[1] = theme.getBoundingClientRect().top + scrollY - cell;
+      // Portrait: the field fills the tallest empty gap of the hero, wherever the text leaves it.
+      const inner = hero.querySelector('.hero__inner')?.getBoundingClientRect() ?? r;
+      const blocks = [logo, theme, hero.querySelector('.hero__meta')]
+        .flatMap((el) => (el ? [el.getBoundingClientRect()] : []))
+        .filter((b) => b.height > 0)
+        .sort((a, b) => a.top - b.top);
+      const edges = [inner.top, ...blocks.flatMap((b) => [b.top, b.bottom]), inner.bottom];
+      let [top, bottom] = [edges[0], edges[1]];
+      for (let i = 2; i + 1 < edges.length; i += 2) if (edges[i + 1] - edges[i] > bottom - top) [top, bottom] = [edges[i], edges[i + 1]];
+      band[0] = top + scrollY + cell;
+      band[1] = bottom + scrollY - cell;
       uniforms.uZone.value = theme.getBoundingClientRect().right;
     };
     measure();
