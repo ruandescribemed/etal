@@ -44,7 +44,7 @@ Screenshot:  Black, "INTELIGÊNCIA ARTIFICIAL" in pale LED dots on the left; on 
 The concept beyond the hero:
 - **Dot-matrix type (Doto)** for every display line, numbers and labels on the panel. Its ROND axis is the shape rule: square dots at rest, round dots when fired (CSS can transition it, so it works everywhere).
 - **Color fields as screens of the panel**, alternating: green (campo), black (noite), lime (lima). The border between two fields is a row of pixels, not a straight line.
-- **Ticker:** one black LED strip scrolling the event info, faster when the page scrolls.
+- **Ticker:** one black LED strip scrolling the event info, a plain marquee at a steady pace (the scroll and the pointer leave it alone).
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
 - **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. No photo yet: the panel stays off, with lit initials.
 - **Transition:** IF squares fill the screen from where you clicked; on the new page they fire (turn round) and go out.

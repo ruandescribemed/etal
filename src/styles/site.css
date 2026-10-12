@@ -301,6 +301,9 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   color: var(--lime);
 }
 .ticker__track { display: inline-flex; white-space: nowrap; }
+/* A plain marquee: one copy of the items per loop, at a steady pace, whatever the scroll does. */
+.motion .ticker__track { animation: marquee 38s linear infinite; }
+@keyframes marquee { to { translate: -50% 0; } }
 .ticker__item {
   display: inline-flex;
   align-items: center;

@@ -1,14 +1,13 @@
 // Global motion for the site: runs once on the client, before the first page initializes.
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ease, onPage, onScroll, prefersReducedMotion, setTransition } from '@/engine';
+import { ease, onPage, onScroll, setTransition } from '@/engine';
 import { startHalftone } from './halftone';
 
 export function setupMotion() {
   transition();
   chrome();
   fields();
-  ticker();
   startHalftone();
 }
 
@@ -103,19 +102,5 @@ function fields() {
         toggleClass: { targets: el, className: 'is-fired' },
       });
     });
-  });
-}
-
-// The LED strip: a steady crawl that speeds up (and reverses) with the scroll.
-function ticker() {
-  onPage(() => {
-    const track = document.querySelector<HTMLElement>('[data-ticker] [data-track]');
-    if (!track || prefersReducedMotion()) return;
-    const loop = gsap.to(track, { xPercent: -50, ease: 'none', duration: 38, repeat: -1 });
-    const off = onScroll(({ velocity }) => {
-      const dir = velocity < 0 ? -1 : 1;
-      gsap.to(loop, { timeScale: dir * (1 + Math.min(Math.abs(velocity) / 6, 6)), duration: 0.4, overwrite: true });
-    });
-    return () => { off(); };
   });
 }
