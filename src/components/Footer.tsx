@@ -1,53 +1,48 @@
-import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
-import Image from 'next/image'
-import lucasImage from '@/images/avatars/lucas.jpeg'
+import Image from 'next/image';
+import { pastEditions, site } from '@/data/site';
+import { Logo } from './Logo';
 
 export function Footer() {
   return (
-    <footer className="flex-none py-16">
-      <Container className="flex flex-col items-center justify-between md:flex-row">
+    <footer className="footer field field--noite" data-tone="noite" data-edge>
+      <div className="footer__brand">
         <Logo />
-
-        <div>
-          <p className="mt-6 text-base text-slate-500 md:mt-0">
-            Copyright &copy; {new Date().getFullYear()} ETAL Direitos
-            reservados.
-          </p>
-
-          <p className="text-slate-500">
-            Desenvolvido por{' '}
-            <Image
-              src="https://github.com/ruangustavo.png"
-              alt="Imagem de Ruan Gustavo"
-              className="mx-1 inline-block size-6 rounded-full"
-              width="42"
-              height="42"
-            />
-            <a
-              href="https://www.linkedin.com/in/ruan-gustavo/"
-              target="_blank"
-              className="text-green-800 underline decoration-green-800 underline-offset-[6px]"
-            >
-              @ruangustavo
-            </a>
-            <Image
-              src={lucasImage}
-              alt="Imagem de Lucas Nunes"
-              className="mx-1 inline-block size-6 rounded-full"
-              width="42"
-              height="42"
-            />
-            <a
-              href="https://github.com/lucasnbs"
-              target="_blank"
-              className="text-green-800 underline decoration-green-800 underline-offset-[6px]"
-            >
-              @lucasnbs
-            </a>
-          </p>
-        </div>
-      </Container>
+        <p className="footer__when">
+          {site.dates.label}
+          <br />
+          {site.venue.name}
+        </p>
+      </div>
+      <div className="footer__col">
+        <h2 className="label">Realização</h2>
+        <ul>
+          {site.organizers.map((name) => (
+            <li key={name}>{name}</li>
+          ))}
+        </ul>
+      </div>
+      <div className="footer__col footer__col--wide">
+        <h2 className="label">Edições anteriores</h2>
+        <ul className="footer__editions">
+          {pastEditions.map((edition) => (
+            <li key={edition.year}>
+              <span className="led">{edition.year}</span>
+              <span>{edition.note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="footer__base">
+        <p>ETAL 2026, {site.fullName}</p>
+        <p>
+          Desenvolvido por{' '}
+          <a className="footer__credit" href={site.credit.href} target="_blank" rel="noopener noreferrer">
+            <Image className="footer__avatar" src={site.credit.avatar} alt="" width={28} height={28} />
+            {site.credit.handle}
+          </a>
+          .
+        </p>
+      </div>
     </footer>
-  )
+  );
 }

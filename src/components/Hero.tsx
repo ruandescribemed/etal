@@ -1,70 +1,46 @@
-import { BackgroundImage } from '@/components/BackgroundImage'
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
+import { site } from '@/data/site';
+import { Logo } from './Logo';
 
 export function Hero() {
   return (
-    <div className="relative py-20 sm:pb-24 sm:pt-36">
-      <BackgroundImage className="-bottom-14 -top-36" />
-      <Container className="relative">
-        <div className="mx-auto max-w-2xl lg:max-w-4xl lg:px-12">
-          <h1 className="font-display text-2xl font-bold tracking-tighter text-green-600 sm:text-3xl">
-            <span className="sr-only">ETAL - </span> Encontro de Tecnologia do
-            Alto Oeste Potiguar 2025
-          </h1>
-          <h2 className="mt-0.5 text-2xl font-semibold tracking-tight text-green-900">
-            Entre Likes e Algoritmos: O Impacto da IA nas Redes e na Mente
-          </h2>
-          <div className="mt-6 space-y-6 font-display text-lg tracking-tight text-green-900 sm:text-2xl">
-            <p>
-              Junte-se a nós de 26 a 28 de novembro de 2025 para uma série de
-              eventos que discutem as consequências da IA nas redes sociais e
-              mente.
-            </p>
+    <section className="hero field field--noite" id="inicio" data-hero data-tone="noite" aria-labelledby="hero-title">
+      {/* Static frame of the halftone for the no-GL path; the live one is drawn by motion/halftone. */}
+      <div className="hero__halftone" aria-hidden="true" />
 
-            <p>Explore nossa programação, que inclui:</p>
+      <div className="hero__inner">
+        <h1 className="hero__logo" id="hero-title">
+          <Logo data-logo />
+          <span className="hero__name">
+            {site.edition} {site.fullName}
+          </span>
+        </h1>
 
-            <ul className="list-disc">
-              <li className="ml-4">Minicursos imersivos em diferentes áreas</li>
-              <li className="ml-4">Competição de jogos envolvente</li>
-              <li className="ml-4">
-                Apresentações e intervenções culturais estimulantes{' '}
-              </li>
-              <li className="ml-4">
-                Mesa redonda para discussão de tópicos relevantes
-              </li>
-              <li className="ml-4">
-                Cerimônia de abertura e encerramento com premiações
-              </li>
-            </ul>
-
-            <p>
-              Não perca a oportunidade de se envolver, aprender e ser inspirado
-              pelas transformações que estão ocorrendo no IFRN. Inscreva-se
-              agora e faça parte dessa celebração memorável.
-            </p>
-            <Button
-              href="https://suap.ifrn.edu.br/eventos/inscricao/1/8528/"
-              className="mt-10"
-            >
-              Se inscrever
-            </Button>
-          </div>
-          <dl className="mt-10 grid grid-cols-2 gap-x-10 gap-y-6 sm:mt-16 sm:gap-x-16 sm:gap-y-10 sm:text-center lg:auto-cols-auto lg:grid-flow-col lg:grid-cols-none lg:justify-start lg:text-left">
-            {[
-              ['Localização', 'Pau dos Ferros'],
-              ['Data', '26 a 28 de novembro de 2025'],
-            ].map(([name, value]) => (
-              <div key={name}>
-                <dt className="font-mono text-sm text-green-600">{name}</dt>
-                <dd className="mt-0.5 text-2xl font-semibold tracking-tight text-green-900">
-                  {value}
-                </dd>
-              </div>
+        <div className="hero__theme">
+          <p className="hero__label led">{site.theme.label}</p>
+          <p className="hero__title led">
+            {site.theme.lines.map((line) => (
+              <span className="hero__line" key={line}>
+                {line}
+              </span>
             ))}
-          </dl>
+          </p>
         </div>
-      </Container>
-    </div>
-  )
+
+        <dl className="hero__meta">
+          <div>
+            <dt className="label">Quando</dt>
+            <dd>
+              {site.dates.label}, {site.dates.weekdays}
+            </dd>
+          </div>
+          <div>
+            <dt className="label">Onde</dt>
+            <dd>
+              {site.venue.name}, {site.venue.city}, {site.venue.region}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  );
 }

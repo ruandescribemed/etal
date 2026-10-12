@@ -1,0 +1,63 @@
+/* Design tokens (DESIGN.md). Names are the engine contract; values are ETAL's. */
+:root {
+  /* Fields: the screens of the panel */
+  --campo: #5aa323;      /* green field, sampled from the logo */
+  --noite: #08110a;      /* black field */
+  --ponto: #ed3237;      /* logo red: fired dots, on black only */
+
+  --ink: #08160b;        /* text on green and red */
+  --noite-ink: #eef5e9;  /* text on black */
+  --noite-muted: #9fb3a2;
+  --lime: #7dd13f;       /* lit LED type on black, and the lime field */
+
+  /* Engine contract: the current field sets these */
+  --c-bg: var(--campo);
+  --c-fg: var(--ink);
+  --c-muted: var(--ink);
+  --c-line: rgb(8 22 11 / 0.22);
+  --c-accent: var(--ink);
+  --c-curtain: var(--noite);
+
+  /* Type */
+  --f-display: var(--font-doto), ui-monospace, monospace;
+  --f-body: var(--font-mona), system-ui, sans-serif;
+  --t-xl: clamp(2.6rem, 1rem + 6.4vw, 8rem);
+  --t-l: clamp(1.6rem, 1.15rem + 1.75vw, 2.9rem);
+  --t-m: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --t-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --t-s: 0.875rem;
+  --t-xs: 0.8125rem;
+
+  /* Space */
+  --u: clamp(0.5rem, 0.35rem + 0.6vw, 1rem);
+  --gutter: clamp(1.25rem, 0.6rem + 1.8vw, 2.5rem);
+  --cols: 12;
+  --header-h: 4.25rem;
+
+  /* The lattice: one cell of the IF grid (GL and CSS fallback share it) and the edge pixel */
+  --cell: 32px;
+  --px: 16px;
+
+  /* Shape: square at rest, circle when fired */
+  --radius: 2px;
+  --round: 999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fire: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Layers */
+  --z-gl: 0;
+  --z-content: 1;
+  --z-header: 50;
+  --z-menu: 60;
+  --z-curtain: 90;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --cell: 26px;
+    --px: 12px;
+    --header-h: 3.75rem;
+  }
+}

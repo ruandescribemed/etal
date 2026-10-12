@@ -1,28 +1,25 @@
-import { BackgroundImage } from '@/components/BackgroundImage'
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Layout } from '@/components/Layout'
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
+export const metadata: Metadata = {
+  title: 'Página não encontrada',
+  description: 'Esta página não existe no site do ETAL 2026. Volte para o início para ver a programação, as palestras e os minicursos.',
+};
+
+// A panel where nothing lights up.
 export default function NotFound() {
   return (
-    <Layout showFooter={false}>
-      <div className="relative flex h-full items-center py-20 sm:py-36">
-        <BackgroundImage className="-top-36 bottom-0" />
-        <Container className="relative flex w-full flex-col items-center">
-          <p className="font-display text-2xl tracking-tight text-green-900">
-            404
-          </p>
-          <h1 className="mt-4 font-display text-4xl font-medium tracking-tighter text-green-600 sm:text-5xl">
-            Page not found
-          </h1>
-          <p className="mt-4 text-lg tracking-tight text-green-900">
-            Sorry, we couldn’t find the page you’re looking for.
-          </p>
-          <Button href="/" className="mt-8">
-            Go back home
-          </Button>
-        </Container>
-      </div>
-    </Layout>
-  )
+    <section className="missing field field--noite" data-tone="noite">
+      <div className="lattice lattice--lime" aria-hidden="true" />
+      <p className="missing__code led" aria-hidden="true">
+        404
+      </p>
+      <h1 className="missing__title led">Nenhum neurônio respondeu</h1>
+      <p className="missing__text">Esta página não existe ou mudou de endereço.</p>
+      <Link className="cta cta--outline" href="/">
+        <span className="cta__dot" aria-hidden="true" />
+        <span>Voltar para o início</span>
+      </Link>
+    </section>
+  );
 }

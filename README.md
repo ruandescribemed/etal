@@ -1,35 +1,24 @@
-# Keynote
+# ETAL 2026
 
-Keynote is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+Site do VIII Encontro de Tecnologia do Alto Oeste Potiguar (IFRN Campus Pau dos Ferros), em [etal.nadic.com.br](https://etal.nadic.com.br).
 
-## Getting started
-
-To get started with this template, first install the npm dependencies:
+## Rodar
 
 ```bash
 npm install
+npm run dev          # desenvolvimento em http://localhost:3000
+npm run build        # build de produção
+npm start            # serve o build
 ```
 
-Next, run the development server:
+## Onde mudar o conteúdo
 
-```bash
-npm run dev
-```
+Todo o conteúdo fica em `src/data/site.ts`: tema, datas, estado das inscrições, programação, palestras, minicursos, e-sports e edições anteriores. Os componentes só leem esse arquivo.
 
-Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+- **Inscrições:** `registration` aceita `{ status: 'soon' }`, `{ status: 'open', url }` ou `{ status: 'closed' }`. Os botões e textos do site mudam sozinhos.
+- **Palestrantes:** `speaker` é `{ kind: 'announced', name, role }` ou `{ kind: 'tba', note }` para quem ainda não foi confirmado.
+- Itens com `placeholder: true` são dados de exemplo e precisam ser trocados antes de publicar.
 
-## Customizing
+## Design
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
-
-## License
-
-This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
-
-## Learn more
-
-To learn more about the technologies used in this site template, see the following resources:
-
-- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
-- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
-- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+`DESIGN.md` descreve o conceito (o painel de LED feito do grid do IF), a paleta, a tipografia (Doto e Mona Sans) e as regras de movimento.
