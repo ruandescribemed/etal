@@ -52,7 +52,7 @@ void main() {
     ? smoothstep(uBand.x, uBand.x + uCell * 2.0, center.y) * (1.0 - smoothstep(uBand.y - uCell * 2.0, uBand.y, center.y))
     : mix(0.35, 1.0, smoothstep(uCell, uCell * 4.0, center.y));
   float edge = 0.05 * sin(v * 5.0 + uTime * 0.6) + 0.025 * sin(v * 13.0 - uTime * 0.9);
-  float g = smoothstep(mix(0.5, 0.3, uPortrait), 0.97, u + edge) * band;
+  float g = smoothstep(mix(0.5, 0.05, uPortrait), 0.97, u + edge) * band;
   // Switching on: the squares grow from nothing, the edge first, toward the title.
   g *= 1.0 - pow(2.0, -10.0 * clamp(uTime - uStart - (1.0 - u) * 0.8, 0.0, 1.0));
   float zone = uPortrait > 0.5 ? smoothstep(0.15, 0.35, u) * band : smoothstep(uZone, uZone + uResolution.x * 0.2, center.x);
@@ -126,7 +126,7 @@ export function startHalftone() {
 
     const measure = () => {
       const r = hero.getBoundingClientRect();
-      const cell = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cell')) || 32;
+      const cell = parseFloat(getComputedStyle(hero).getPropertyValue('--cell')) || 32;
       uniforms.uCell.value = cell;
       uniforms.uHeroH.value = r.bottom + scrollY;
       uniforms.uPortrait.value = r.width < r.height ? 1 : 0;

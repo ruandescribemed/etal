@@ -598,6 +598,7 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   .hero__inner { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto 1fr auto auto; }
   .hero__logo { grid-column: 1 / -1; margin-top: calc(var(--u) * 1.5); }
   .hero__logo .logo { width: min(88%, 22rem); }
+  .hero { --cell: 16px; } /* a finer halftone: the band between logo and title is short */
   .hero__halftone { display: none; }
   .hero__theme { grid-column: 1 / -1; }
   .hero__label { font-size: var(--t-s); }
