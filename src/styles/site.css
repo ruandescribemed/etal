@@ -243,7 +243,7 @@ html.gl-on .hero { background: transparent; }
   background-size: var(--cell) var(--cell);
   mask-image: linear-gradient(to right, transparent 58%, #000 97%);
 }
-html.gl-on .hero__halftone { visibility: hidden; }
+html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibility: hidden; }
 .hero__inner {
   position: relative;
   display: grid;
