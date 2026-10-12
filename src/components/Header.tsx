@@ -60,35 +60,39 @@ export function Header() {
   };
 
   return (
-    <header className="header" data-home={pathname === '/'}>
-      <Link className="header__logo" href="/" aria-label="ETAL 2026, página inicial" onClick={() => setOpen(false)}>
-        <Logo />
-      </Link>
+    <>
+      <header className="header" data-home={pathname === '/'}>
+        <Link className="header__logo" href="/" aria-label="ETAL 2026, página inicial" onClick={() => setOpen(false)}>
+          <Logo />
+        </Link>
 
-      <nav className="header__nav" aria-label="Principal">
-        <ul>
-          {nav.map((item) => (
-            <li key={item.href}>
-              <Link className="header__link" href={item.href} aria-current={current(item.href)}>
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <nav className="header__nav" aria-label="Principal">
+          <ul>
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link className="header__link" href={item.href} aria-current={current(item.href)}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <button
-        ref={toggle}
-        className="header__toggle"
-        type="button"
-        aria-expanded={open}
-        aria-controls="menu"
-        onClick={() => setOpen((o) => !o)}
-      >
-        <span className="header__toggle-node" aria-hidden="true" />
-        {open ? 'Fechar' : 'Menu'}
-      </button>
+        <button
+          ref={toggle}
+          className="header__toggle"
+          type="button"
+          aria-expanded={open}
+          aria-controls="menu"
+          onClick={() => setOpen((o) => !o)}
+        >
+          <span className="header__toggle-node" aria-hidden="true" />
+          {open ? 'Fechar' : 'Menu'}
+        </button>
+      </header>
 
+      {/* A sibling of the header, not a child: the header slides away with translate, and a fixed
+          overlay inside it would take the sliding header as its box. */}
       <div ref={menu} id="menu" className="menu" data-open={open} inert={!open}>
         <nav aria-label="Menu">
           <ul className="menu__list">
@@ -106,6 +110,6 @@ export function Header() {
           {site.dates.weekdays}, {site.venue.city}
         </p>
       </div>
-    </header>
+    </>
   );
 }
