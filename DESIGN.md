@@ -47,6 +47,7 @@ The concept beyond the hero:
 - **Ticker:** one black LED strip scrolling the event info, a plain marquee at a steady pace (the scroll and the pointer leave it alone).
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
 - **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. No photo yet: the panel stays off, with lit initials.
+- **Local is a real map on the panel:** Pau dos Ferros from OpenStreetMap, rasterized once to LEDs (`src/data/venue-map.ts`): roads lit, streets dimmer, water in big dark green squares, the campus fired red on the BR-405 south of the centre, with a ring pulsing from it. Static SVG, no map library or tiles; "Abrir no mapa" is the interactive one. The plot carries the OpenStreetMap credit (ODbL).
 - **Transition:** IF squares fill the screen from where you clicked; on the new page they fire (turn round) and go out.
 - **404:** a panel where nothing lights up: "nenhum neurônio respondeu".
 

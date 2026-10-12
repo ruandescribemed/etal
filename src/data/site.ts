@@ -92,7 +92,7 @@ export const site = {
     city: 'Pau dos Ferros',
     region: 'RN',
     postalCode: '59900-000',
-    coordinates: { lat: -6.1108, lng: -38.2089, label: '6°06′39″ S, 38°12′32″ O' },
+    coordinates: { lat: -6.1458, lng: -38.2037, label: '6°08′45″ S, 38°12′13″ O' },
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=IFRN%20Campus%20Pau%20dos%20Ferros',
   },
   organizers: ['IFRN Campus Pau dos Ferros', 'NADIC'],
