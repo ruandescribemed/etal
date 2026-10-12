@@ -1,5 +1,7 @@
-// One fullscreen WebGL layer under the DOM (the hero halftone). No DOM-synced planes: this site
-// only needs a background shader, so the plane machinery is left out.
+// One WebGL layer under the DOM, at the top of the page and scrolling with it (the hero halftone): the
+// browser moves it with the page, so it never trails the scroll the way a fixed layer redrawn from
+// scrollY does on phones. No DOM-synced planes: this site only needs a background shader, so the plane
+// machinery is left out.
 // Disabled under reduced motion, without WebGL, or with Save-Data; the CSS fallback stays visible.
 import { Renderer, Camera, Transform, Program, Mesh, Vec2, Triangle } from 'ogl';
 import { gsap } from 'gsap';
@@ -7,6 +9,7 @@ import { scrollState } from '../scroll';
 import { isMobile, prefersReducedMotion } from '../env';
 
 let renderer: Renderer | null = null;
+let host: HTMLElement | null = null;
 let camera: Camera | null = null;
 let vw = 0, vh = 0, velocity = 0;
 let bg: { scene: Transform; program: Program } | null = null;
@@ -27,19 +30,22 @@ export function initGL() {
   const gl = renderer.gl;
   gl.canvas.classList.add('gl-canvas');
   gl.canvas.setAttribute('aria-hidden', 'true');
-  // Lives in a host element that persists across navigations (#gl in the layout).
-  (document.getElementById('gl') || document.body).appendChild(gl.canvas);
+  // Lives in a host element that persists across navigations (#gl in the layout), sized by CSS and
+  // setBackgroundHeight.
+  host = document.getElementById('gl') || document.body;
+  host.appendChild(gl.canvas);
   camera = new Camera(gl, { near: -10, far: 10 });
   document.documentElement.classList.add('gl-on');
   resize();
-  addEventListener('resize', resize);
-  addEventListener('pointermove', (e) => { mouse.tx = e.clientX / vw; mouse.ty = 1 - e.clientY / vh; }, { passive: true });
+  new ResizeObserver(resize).observe(host);
+  addEventListener('pointermove', (e) => { mouse.tx = e.clientX / innerWidth; mouse.ty = 1 - e.clientY / innerHeight; }, { passive: true });
   gsap.ticker.add(render);
 }
 
 /**
- * Fullscreen shader layer drawn under the DOM. Built-in uniforms: uTime (s), uResolution (CSS px),
- * uDpr, uScroll (0..1 page progress), uScrollY (CSS px), uVelocity, uMouse (0..1, smoothed).
+ * Shader layer drawn under the DOM at the top of the page, scrolling with it: gl_FragCoord is page
+ * space. Built-in uniforms: uTime (s), uResolution (the layer, CSS px), uDpr, uScroll (0..1 page
+ * progress), uScrollY (CSS px), uVelocity, uMouse (0..1 of the viewport, smoothed).
  * Varying: vUv. Persists across navigations until clearBackground(). Returns the Program.
  */
 export function setBackground(fragment: string, uniforms: Record<string, { value: unknown }> = {}) {
@@ -64,6 +70,11 @@ export function setBackground(fragment: string, uniforms: Record<string, { value
 }
 export function clearBackground() { bg = null; }
 
+/** The layer's height in CSS px, from the top of the page (e.g. the hero's). */
+export function setBackgroundHeight(px: number) {
+  if (host) host.style.height = `${px}px`;
+}
+
 /** Skip drawing while the background has nothing to show (e.g. the hero is off screen). */
 export function setBackgroundActive(on: boolean) {
   if (on === active) return;
@@ -72,8 +83,8 @@ export function setBackgroundActive(on: boolean) {
 }
 
 function resize() {
-  if (!renderer || !camera) return;
-  vw = innerWidth; vh = innerHeight;
+  if (!renderer || !camera || !host) return;
+  vw = host.clientWidth; vh = host.clientHeight;
   renderer.setSize(vw, vh);
   camera.orthographic({ left: -vw / 2, right: vw / 2, top: vh / 2, bottom: -vh / 2, near: -10, far: 10 });
 }

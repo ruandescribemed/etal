@@ -5,7 +5,7 @@
 // The pointer trail and the ripples are uniform arrays of recent events, so the shader keeps no state
 // between frames. Without GL (no WebGL, Save-Data, reduced motion) the CSS halftone stays visible.
 import { gsap } from 'gsap';
-import { onPage, onScroll, setBackground, setBackgroundActive } from '@/engine';
+import { onPage, onScroll, setBackground, setBackgroundActive, setBackgroundHeight } from '@/engine';
 
 const TRAIL = 24;
 const RIPPLES = 4;
@@ -15,7 +15,6 @@ precision highp float;
 uniform float uTime;
 uniform float uDpr;
 uniform vec2 uResolution;
-uniform float uScrollY;
 uniform float uCell;
 uniform float uHeroH;
 uniform float uPortrait;
@@ -37,8 +36,8 @@ const float REACH = 4.0;    // swell radius, in cells
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 void main() {
-  vec2 css = vec2(gl_FragCoord.x, uResolution.y * uDpr - gl_FragCoord.y) / uDpr;
-  vec2 page = css + vec2(0.0, uScrollY);
+  // The layer scrolls with the page from its top: its pixels are page coordinates.
+  vec2 page = vec2(gl_FragCoord.x, uResolution.y * uDpr - gl_FragCoord.y) / uDpr;
   vec2 id = floor(page / uCell);
   vec2 center = (id + 0.5) * uCell;
   vec2 q = page - center;
@@ -129,6 +128,7 @@ export function startHalftone() {
       const cell = parseFloat(getComputedStyle(hero).getPropertyValue('--cell')) || 32;
       uniforms.uCell.value = cell;
       uniforms.uHeroH.value = r.bottom + scrollY;
+      setBackgroundHeight(uniforms.uHeroH.value);
       uniforms.uPortrait.value = r.width < r.height ? 1 : 0;
       // Portrait: the field fills the tallest empty gap of the hero, wherever the text leaves it.
       const inner = hero.querySelector('.hero__inner')?.getBoundingClientRect() ?? r;

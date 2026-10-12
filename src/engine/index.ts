@@ -17,7 +17,7 @@ import { prefersReducedMotion } from './env';
 
 export { onScroll, scrollState, scrollToTarget, stopScroll, startScroll } from './scroll';
 export { setTransition } from './transition';
-export { setBackground, clearBackground, setBackgroundActive, glSupported } from './gl';
+export { setBackground, clearBackground, setBackgroundActive, setBackgroundHeight, glSupported } from './gl';
 export { ease, isTouch, isMobile, prefersReducedMotion } from './env';
 
 export type PageFn = (page: { intro: gsap.core.Timeline; path: string }) => void | (() => void);
