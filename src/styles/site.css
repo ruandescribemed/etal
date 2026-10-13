@@ -437,7 +437,7 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
 .talk__role, .talk__who--tba { color: var(--noite-muted); }
 /* The panel shows the person in lime through its square dots; when the card fires (reading line or
    hover) the photo comes in colour and the dots turn round. */
-.talk__face { --dot: 5px; position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 4 / 5; background: var(--noite); }
+.talk__face { --dot: 5px; position: relative; isolation: isolate; overflow: hidden; aspect-ratio: 1; background: var(--noite); }
 .talk__face img {
   object-fit: cover;
   filter: grayscale(1) contrast(1.25) brightness(1.1);
@@ -452,10 +452,14 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
   transition-duration: 0.15s;
 }
 .talk:is(.is-fired, :hover) .talk__face::after { opacity: 0; transition-duration: 0.15s; }
-.talk__face--off { display: grid; place-items: center; outline: 1px solid var(--c-line); outline-offset: -1px; }
+/* No photo: a green screen with the initials in ink, lime when the card fires (no red on green); half on
+   before a name is out. */
+.talk__face--off { display: grid; place-items: center; background: rgb(90 163 35 / 0.2); transition: background-color 1s var(--ease-out); }
 .talk__face--off::after { content: none; }
-.talk__off { position: relative; font-size: var(--t-s); color: var(--led-dim); }
-.talk__off--lit { font-size: var(--t-xl); color: var(--lime); }
+.talk__face--off .talk__off { position: relative; font-size: var(--t-s); color: rgb(125 209 63 / 0.6); }
+.talk__face--lit { background: var(--campo); }
+.talk__face--lit .talk__off { font-size: var(--t-xl); color: var(--ink); }
+.talk:is(.is-fired, :hover) .talk__face--lit { background: var(--lime); transition-duration: 0.15s; }
 
 /* ── Courses (green) ──────────────────────────────────────────────────────────────── */
 .courses {

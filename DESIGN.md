@@ -20,6 +20,8 @@ The hero first switched on with a stepped-opacity flicker (an LED sign booting);
 
 Of four ways to show the speakers prototyped (no photos, an avatar by the name, a lineup of portraits, one sticky screen), the owner chose the lineup.
 
+With no photo yet, the lineup was six tall 4:5 panels of dotted lattice, mostly empty ("card tá feio"). Of four cards prototyped (a row card, a poster tile, an index of big titles, a shorter lineup) the owner kept the card as it was: what was wrong was the panel's size and its dots. Of four panels prototyped (soft lights, flat, huge initials in Mona Sans, a green screen) in four proportions, the owner chose the green screen, square.
+
 Of the hero layouts prototyped (a centered column, the title as a full-width sign, the mark as the hero, then sizes and order inside the original split), the owner kept the split with everything in one block at the bottom: mark, theme, info, the dark above them.
 
 The hero's info was too much text (a ruled block, "Quando / Onde" labels). Of four organizations prototyped (as it was, one line under the title, beside the name, an LED tag), the owner chose the LED tag: dates and place take the tag above the title ("2–4 dez · Pau dos Ferros, RN"), and "Tema de 2026" goes.
@@ -50,7 +52,7 @@ The concept beyond the hero:
 - **Countdown:** a bar above the header with the time left to the credenciamento, dd:hh:mm:ss on flip tiles (dark tiles, lime figures in Mona Sans). It hides once the event begins.
 - **Ticker:** one black LED strip scrolling the event info, a plain marquee at a steady pace (the scroll and the pointer leave it alone).
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
-- **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. No photo yet: the panel stays off, with lit initials.
+- **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. Square panels. No photo yet: the panel is a green screen with the initials in ink, lime when the card fires; before a name is out it stays half on, "a confirmar".
 - **Local is a real map on the panel:** Pau dos Ferros from OpenStreetMap, rasterized once to LEDs (`src/data/venue-map.ts`): roads lit, streets dimmer, water in big dark green squares, the campus fired red on the BR-405 south of the centre, with a ring pulsing from it. Static SVG, no map library or tiles; "Abrir no mapa" is the interactive one. The plot carries the OpenStreetMap credit (ODbL).
 - **Transition:** IF squares fill the screen from where you clicked; on the new page they fire (turn round) and go out.
 - **404:** a panel where nothing lights up: "nenhum neurônio respondeu".

@@ -22,12 +22,12 @@ const initials = (name: string) =>
     .map((word) => word.charAt(0))
     .join('');
 
-// A panel switched off: lit initials once the name is out, "a confirmar" before that.
+// A panel with no photo: a green screen with the initials once the name is out, half on with
+// "a confirmar" before that.
 function Off({ label, lit }: { label: string; lit: boolean }) {
   return (
-    <div className="talk__face talk__face--off">
-      <span className="lattice lattice--lime" />
-      <span className={`talk__off led${lit ? ' talk__off--lit' : ''}`}>{label}</span>
+    <div className={`talk__face talk__face--off${lit ? ' talk__face--lit' : ''}`}>
+      <span className="talk__off led">{label}</span>
     </div>
   );
 }
