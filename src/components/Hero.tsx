@@ -43,10 +43,10 @@ export function Hero() {
   );
 }
 
-// While registration is open it leads; otherwise the schedule does, beside where registration stands.
+// While registration is open it leads; otherwise the schedule does. The other way in is plain text.
 function Actions({ registration }: { registration: Registration }) {
-  const schedule = (lead: boolean) => (
-    <a className={`cta ${lead ? 'cta--open' : 'cta--outline'}`} href="#programacao">
+  const schedule = (
+    <a className="cta cta--open" href="#programacao">
       <span className="cta__dot" aria-hidden="true" />
       <span>Ver programação</span>
     </a>
@@ -56,24 +56,25 @@ function Actions({ registration }: { registration: Registration }) {
       return (
         <>
           <RegistrationCta registration={registration} />
-          {schedule(false)}
+          <a className="link" href="#programacao">
+            Ver programação
+          </a>
         </>
       );
     case 'soon':
       return (
         <>
-          {schedule(true)}
-          <a className="cta cta--outline" href="#inscricao">
-            <span className="cta__dot" aria-hidden="true" />
-            <span>Inscrições em breve</span>
+          {schedule}
+          <a className="link" href="#inscricao">
+            Inscrições em breve
           </a>
         </>
       );
     case 'closed':
       return (
         <>
-          {schedule(true)}
-          <RegistrationCta registration={registration} />
+          {schedule}
+          <p className="hero__note">Inscrições encerradas</p>
         </>
       );
   }

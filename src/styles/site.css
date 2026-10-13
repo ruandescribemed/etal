@@ -268,7 +268,8 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
   text-wrap: balance;
 }
 .hero__facts { max-width: 54ch; color: var(--noite-muted); }
-.hero__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.hero__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem calc(var(--u) * 2); }
+.hero__note { font-size: var(--t-s); font-weight: 650; color: var(--c-muted); }
 /* The days: the number is the one LED here, and it fires with the link. */
 .hero__days { grid-column: 9 / -1; border-bottom: 1px solid var(--c-line); }
 .hero__day {
