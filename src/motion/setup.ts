@@ -1,11 +1,10 @@
 // Global motion for the site: runs once on the client, before the first page initializes.
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ease, onPage, onScroll, setTransition } from '@/engine';
+import { ease, onPage, setTransition } from '@/engine';
 
 export function setupMotion() {
   transition();
-  chrome();
   fields();
 }
 
@@ -53,45 +52,12 @@ function transition() {
   });
 }
 
-// Header behaviour: steps aside while reading down, returns on the way up, takes the ground of the
-// field under it, and shows the small logo once the hero is gone.
-function chrome() {
-  const root = document.documentElement.classList;
-  let last = 0;
-  onScroll(({ y }) => {
-    root.toggle('is-scrolled', y > 8);
-    if (Math.abs(y - last) < 6) return;
-    root.toggle('frame-away', y > 240 && y > last && !root.contains('menu-open'));
-    last = y;
-  });
-
-  onPage(() => {
-    const hero = document.querySelector('[data-hero]');
-    if (!hero) return;
-    ScrollTrigger.create({
-      trigger: hero,
-      start: 'bottom 35%',
-      end: 'max',
-      onToggle: (self) => root.toggle('past-hero', self.isActive),
-    });
-    return () => root.remove('past-hero', 'frame-away');
-  });
-}
-
-// The field under the header sets its tone; LED labels fire as they cross the reading line.
+// The header takes the tone of the first field, the one it sits on; LED labels fire as they cross the
+// reading line.
 function fields() {
   onPage(() => {
-    const html = document.documentElement;
     const first = document.querySelector<HTMLElement>('main [data-tone]');
-    html.dataset.tone = first?.dataset.tone ?? 'campo';
-    document.querySelectorAll<HTMLElement>('[data-tone]').forEach((el) => {
-      ScrollTrigger.create({
-        trigger: el,
-        start: 'top 34px',
-        end: 'bottom 34px',
-        onToggle: (self) => { if (self.isActive) html.dataset.tone = el.dataset.tone; },
-      });
-    });
+    document.documentElement.dataset.tone = first?.dataset.tone ?? 'campo';
     document.querySelectorAll<HTMLElement>('[data-fire]').forEach((el) => {
       ScrollTrigger.create({
         trigger: el,

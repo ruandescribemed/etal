@@ -16,7 +16,6 @@ export function Header() {
     if (!open) return;
     const root = document.documentElement.classList;
     root.add('menu-open');
-    root.remove('frame-away');
     stopScroll();
     menu.current?.querySelector<HTMLElement>('a')?.focus();
     const onKey = (e: KeyboardEvent) => {
@@ -91,8 +90,8 @@ export function Header() {
         </button>
       </header>
 
-      {/* A sibling of the header, not a child: the header slides away with translate, and a fixed
-          overlay inside it would take the sliding header as its box. */}
+      {/* A sibling of the header: a fixed overlay over the whole screen, under the header's logo and
+          toggle. */}
       <div ref={menu} id="menu" className="menu" data-open={open} inert={!open}>
         <nav aria-label="Menu">
           <ul className="menu__list">
