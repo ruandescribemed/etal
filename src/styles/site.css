@@ -504,7 +504,7 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
 
 /* ── Finale (green): the output ───────────────────────────────────────────────────── */
 .finale { padding: calc(var(--u) * 14) var(--gutter) calc(var(--u) * 12); container-type: inline-size; }
-.finale__title { font-size: min(13.9cqi, 13rem); line-height: 0.9; white-space: nowrap; margin-left: -0.03em; }
+.finale__title { font-size: min(13.9cqi, 13rem); line-height: 0.9; white-space: nowrap; margin-left: -0.03em; word-spacing: -0.3em; } /* Doto is monospaced: a space is a whole cell */
 .finale__title > span { display: block; }
 .finale__cursor {
   display: inline-block;
