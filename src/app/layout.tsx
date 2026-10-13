@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
+import { Countdown } from '@/components/Countdown';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Motion } from '@/components/Motion';
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="curtain" aria-hidden="true">
           <div className="curtain__cells" />
         </div>
+        <Countdown />
         <Header />
         <main id="main" tabIndex={-1}>
           {children}

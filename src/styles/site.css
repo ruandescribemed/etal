@@ -90,6 +90,50 @@ body { font-variation-settings: "wdth" 100; }
 .logo { display: block; width: 100%; height: auto; fill: var(--led, currentColor); }
 .logo [data-dot] { fill: var(--fire, var(--h-fire)); }
 
+/* ── Countdown: a bar above the header, the time left on flip tiles ─────────────────── */
+.countdown {
+  --tile: oklch(0.18 0.008 260);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--countdown-h);
+  padding-inline: var(--gutter);
+  background: var(--noite);
+  border-bottom: 1px solid rgb(238 245 233 / 0.14);
+  color: var(--lime);
+}
+.countdown[hidden] { display: none; }
+.countdown:not([hidden]) ~ .header { top: var(--countdown-h); }
+.countdown__line { display: flex; align-items: center; gap: 0.75rem; font-size: var(--t-s); }
+.countdown__lead { font-weight: 650; }
+.countdown__note { color: var(--noite-muted); }
+.countdown__clock { display: flex; align-items: center; font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.countdown__group { display: flex; align-items: center; gap: 0.08em; }
+.countdown__sep { padding-inline: 0.12em; translate: 0 -0.06em; }
+/* A tile: two halves at rest, two flaps while it changes; a dark fold across the middle. */
+.flip {
+  position: relative;
+  width: 1.15em;
+  height: 1.7em;
+  border-radius: 0.25em;
+  background: var(--tile);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 1px 2px rgb(0 0 0 / 0.4);
+  perspective: 1000px;
+}
+.flip::after { content: ''; position: absolute; inset-inline: 0; top: 50%; z-index: 3; height: 1px; translate: 0 -50%; background: rgb(0 0 0 / 0.7); }
+.flip__half { position: absolute; inset-inline: 0; height: 50%; overflow: hidden; background: inherit; }
+.flip__half--top { top: 0; border-radius: 0.25em 0.25em 0 0; transform-origin: bottom; }
+.flip__half--bottom { top: 50%; border-radius: 0 0 0.25em 0.25em; transform-origin: top; }
+.flip__glyph { position: absolute; inset-inline: 0; top: 0; height: 200%; display: grid; place-items: center; }
+.flip__half--bottom .flip__glyph { top: -100%; }
+.flip__flaps { display: contents; background: inherit; }
+.flip__flap-out { z-index: 2; backface-visibility: hidden; transform: rotateX(-90deg); }
+.flip__flap-in { z-index: 1; backface-visibility: hidden; }
+.motion .flip__flap-out { animation: flap-out 0.6s ease-in both; }
+.motion .flip__flap-in { animation: flap-in 0.6s ease-out both; }
+@keyframes flap-out { from { transform: rotateX(0); } 50%, to { transform: rotateX(-90deg); } }
+@keyframes flap-in { from, 50% { transform: rotateX(90deg); } to { transform: rotateX(0); } }
+
 /* ── Header: at the top of the page, over the first field; it scrolls away with it ── */
 .header {
   position: absolute;
@@ -593,6 +637,8 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
   .venue__text { grid-column: 7 / -1; }
 }
 @media (max-width: 767px) {
+  .countdown__note { display: none; }
+  .countdown__clock { font-size: 1.125rem; }
   .hero__mark { margin-bottom: calc(var(--u) * 1.5); }
   .hero__acts .cta { flex: 1 1 auto; justify-content: center; }
 

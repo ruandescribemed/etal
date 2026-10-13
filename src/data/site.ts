@@ -83,6 +83,9 @@ export const site = {
     weekdays: 'de quarta a sexta',
     start: '2026-12-02',
     end: '2026-12-04',
+    // The countdown counts to the credenciamento, the first session.
+    startsAt: '2026-12-02T13:00:00-03:00',
+    startsLabel: 'quarta, 2 de dezembro, 13h',
   },
   registration,
   entry: 'Entrada gratuita e aberta ao público',

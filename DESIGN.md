@@ -26,6 +26,8 @@ The hero's info was too much text (a ruled block, "Quando / Onde" labels). Of fo
 
 That LED hero then read as too decorative: "excesso de LED", and the halftone took a large share of the first screen without adding anything. Of four heroes prototyped without it (one sans headline, the three days beside the theme, colour bands, a countdown), the owner chose the days; their background was "muito seco", and of four backgrounds prototyped for it (two soft lights drifting, the lattice twinkling, a neural network, a small halftone corner), the owner chose the soft lights. The halftone and the WebGL layer went with it. The event's name sits under the mark.
 
+A countdown to the event: of ten countdown components found in the shadcn registries and prototyped as banners (flip clocks, split-flap boards, sliding and rolling numbers, a launch card, NumberFlow), the owner chose the flip clock, in the dark tiles and lime figures of one of the split-flaps, as a bar above the header. Its figures went from Doto to Mona Sans ("letras pixelizadas tá feia"), and the "dias" label went.
+
 ## Concept
 
 ```
@@ -45,6 +47,7 @@ Screenshot:  Black, the ETAL mark over "Inteligência Artificial" in big white t
 The concept beyond the hero:
 - **Dot-matrix type (Doto)** for display lines, numbers and labels on the panel (not the hero's theme, set in Mona Sans: the hero keeps LED to the mark and the day numbers). Its ROND axis is the shape rule: square dots at rest, round dots when fired (CSS can transition it, so it works everywhere).
 - **Color fields as screens of the panel**, alternating: green (campo), black (noite), lime (lima). The border between two fields is a row of pixels, not a straight line.
+- **Countdown:** a bar above the header with the time left to the credenciamento, dd:hh:mm:ss on flip tiles (dark tiles, lime figures in Mona Sans). It hides once the event begins.
 - **Ticker:** one black LED strip scrolling the event info, a plain marquee at a steady pace (the scroll and the pointer leave it alone).
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
 - **Talks:** a lineup, the people first: the panel shows each speaker in lime through its square dots; as the card crosses the reading line it fires, the photo comes in colour and the dots turn round. No photo yet: the panel stays off, with lit initials.
@@ -74,11 +77,12 @@ No secondary grey text on green or lime: hierarchy there comes from size and wei
 ## Grid & rhythm
 
 - 12 columns, fluid gutter; strong lines at col 1, 5 and 9. Phones: 4 columns.
-- Fields: hero (black) → ticker (black strip) → sobre (green) → programação + palestras (black) → minicursos (green) → e-sports (lime) → local (black) → inscrição (green) → footer (black).
+- Fields: countdown (black bar) → hero (black) → ticker (black strip) → sobre (green) → programação + palestras (black) → minicursos (green) → e-sports (lime) → local (black) → inscrição (green) → footer (black).
 
 ## Motion
 
 - Hero: its blocks settle in, in CSS (works before JS); two soft green lights drift behind it, slowly (16 and 21 s). No WebGL anywhere.
+- Countdown: a tile flips when its digit changes (the old top half falls, the new bottom half swings up, 0.6 s). The time left is written into the HTML by an inline script before the first paint, so the page opens on the real time, with no 00:00:00:00 and no shift when React takes over.
 - Scroll: Doto labels fire as they cross the reading line (CSS transition of `font-variation-settings`).
 - Reduced motion: no drift, no ticker motion, no entrance; fired states stay static.
 - No loader.
