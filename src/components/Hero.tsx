@@ -1,38 +1,80 @@
-import { site } from '@/data/site';
+import { days, site, type Registration } from '@/data/site';
 import { Logo } from './Logo';
+import { RegistrationCta } from './RegistrationCta';
 
+// The first screen: what, when and where on the left; the three days on the right, each leading to the
+// schedule. Behind them two soft green lights drift. LED is kept to the mark and the day numbers.
 export function Hero() {
   return (
     <section className="hero field field--noite" id="inicio" data-hero data-tone="noite" aria-labelledby="hero-title">
-      {/* Static frame of the halftone for the no-GL path; the live one is drawn by motion/halftone. */}
-      <div className="hero__halftone" aria-hidden="true" />
+      <div className="hero__glow" aria-hidden="true" />
 
-      <div className="hero__inner">
-        <h1 className="hero__logo" id="hero-title">
-          <Logo data-logo />
+      <div className="hero__main">
+        <h1 className="hero__mark" id="hero-title">
+          <Logo />
           <span className="hero__name">
             {site.edition} {site.fullName}
           </span>
         </h1>
-
-        <div className="hero__theme">
-          <p className="hero__label led">
-            {site.dates.short} · {site.venue.city}, {site.venue.region}
-          </p>
-          <p className="hero__title led">
-            {site.theme.lines.map((line) => (
-              <span className="hero__line" key={line}>
-                <span className="sr-only">{line}</span>
-                {[...line].map((char, i) => (
-                  <span className="hero__char" key={i} style={{ '--i': i }} aria-hidden="true">
-                    {char}
-                  </span>
-                ))}
-              </span>
-            ))}
-          </p>
+        <p className="hero__title">{site.theme.lines.join(' ')}</p>
+        <p className="hero__facts">
+          {site.dates.label}, {site.dates.weekdays} · {site.venue.name} · {site.entryShort}
+        </p>
+        <div className="hero__acts">
+          <Actions registration={site.registration} />
         </div>
       </div>
+
+      <ol className="hero__days" aria-label="Os três dias">
+        {days.map((day) => (
+          <li key={day.id}>
+            <a className="hero__day" href="#programacao">
+              <span className="hero__day-num led tnum">{Number(day.isoDate.slice(-2))}</span>
+              <span className="hero__day-name">{day.weekday}</span>
+              <span className="hero__day-summary">{day.summary}</span>
+              <span className="hero__day-go" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </section>
   );
+}
+
+// While registration is open it leads; otherwise the schedule does, beside where registration stands.
+function Actions({ registration }: { registration: Registration }) {
+  const schedule = (lead: boolean) => (
+    <a className={`cta ${lead ? 'cta--open' : 'cta--outline'}`} href="#programacao">
+      <span className="cta__dot" aria-hidden="true" />
+      <span>Ver programação</span>
+    </a>
+  );
+  switch (registration.status) {
+    case 'open':
+      return (
+        <>
+          <RegistrationCta registration={registration} />
+          {schedule(false)}
+        </>
+      );
+    case 'soon':
+      return (
+        <>
+          {schedule(true)}
+          <a className="cta cta--outline" href="#inscricao">
+            <span className="cta__dot" aria-hidden="true" />
+            <span>Inscrições em breve</span>
+          </a>
+        </>
+      );
+    case 'closed':
+      return (
+        <>
+          {schedule(true)}
+          <RegistrationCta registration={registration} />
+        </>
+      );
+  }
 }

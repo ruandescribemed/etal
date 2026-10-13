@@ -75,7 +75,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main">
           Pular para o conteúdo
         </a>
-        <div id="gl" aria-hidden="true" />
         <div id="curtain" aria-hidden="true">
           <div className="curtain__cells" />
         </div>

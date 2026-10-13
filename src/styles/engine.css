@@ -48,10 +48,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
-/* Stacking: canvas under content, at the top of the page and scrolling with it, so it never lags the
-   scroll (the background sets its height) */
-#gl { position: absolute; inset: 0 0 auto; height: 100svh; z-index: var(--z-gl); pointer-events: none; }
-.gl-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Stacking */
 #main, [data-layer='content'] { position: relative; z-index: var(--z-content); }
 
 /* Hidden-until-revealed (only when motion is allowed and JS runs) */

@@ -2,13 +2,11 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ease, onPage, onScroll, setTransition } from '@/engine';
-import { startHalftone } from './halftone';
 
 export function setupMotion() {
   transition();
   chrome();
   fields();
-  startHalftone();
 }
 
 // IF squares fill the screen from where you clicked (the first one fires red); on the new page

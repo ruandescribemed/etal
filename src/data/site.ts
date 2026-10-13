@@ -86,6 +86,7 @@ export const site = {
   },
   registration,
   entry: 'Entrada gratuita e aberta ao público',
+  entryShort: 'entrada gratuita',
   venue: {
     name: 'IFRN Campus Pau dos Ferros',
     street: 'BR 405, km 154, Chico Cajá',

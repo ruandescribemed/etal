@@ -24,6 +24,8 @@ Of the hero layouts prototyped (a centered column, the title as a full-width sig
 
 The hero's info was too much text (a ruled block, "Quando / Onde" labels). Of four organizations prototyped (as it was, one line under the title, beside the name, an LED tag), the owner chose the LED tag: dates and place take the tag above the title ("2–4 dez · Pau dos Ferros, RN"), and "Tema de 2026" goes.
 
+That LED hero then read as too decorative: "excesso de LED", and the halftone took a large share of the first screen without adding anything. Of four heroes prototyped without it (one sans headline, the three days beside the theme, colour bands, a countdown), the owner chose the days; their background was "muito seco", and of four backgrounds prototyped for it (two soft lights drifting, the lattice twinkling, a neural network, a small halftone corner), the owner chose the soft lights. The halftone and the WebGL layer went with it. The event's name sits under the mark.
+
 ## Concept
 
 ```
@@ -31,18 +33,17 @@ Idea:        ETAL 2026 is an LED panel made of the IF grid: every square is a pi
              When the network thinks, the pixels light up; when they fire, they turn round: the red
              dot on black, a lit black cell on green.
 Metaphor:    Stadium scoreboard / festival LED panel, built with the IF module (squares, one circle).
-Signature:   Hero panel: on black, the giant dot-matrix title rises into place letter by letter. Beside it a
-             halftone of green IF squares fades toward the title by shrinking (full squares at the
-             edge, nothing near the words); the pointer swells and lights them, crossed squares fire
-             (round, red), a tap sends a ripple. A WebGL shader on the panel's grid.
+Signature:   Hero: on black, the mark, the theme in big Mona Sans, when and where in one line and the
+             way in (the schedule, registration); beside them the three days, whose numbers are the
+             hero's one LED and fire with their link. Two soft green lights drift behind it all.
 Emotion:     A panel switching on in the dark. Loud, bright, playful, IFRN green on black.
 Motion verb: light up. Snap on (0.12 to 0.18 s), slow decay (about 1 s). Numbers flip like a scoreboard.
-Screenshot:  Black, "INTELIGÊNCIA ARTIFICIAL" in pale LED dots on the left; on the right, green
-             squares growing from nothing to a full wall, a swell of lime ones around the pointer.
+Screenshot:  Black, the ETAL mark over "Inteligência Artificial" in big white type on the left; on the
+             right the three days with lime LED numbers 2, 3, 4; a green glow in the top corner.
 ```
 
 The concept beyond the hero:
-- **Dot-matrix type (Doto)** for every display line, numbers and labels on the panel. Its ROND axis is the shape rule: square dots at rest, round dots when fired (CSS can transition it, so it works everywhere).
+- **Dot-matrix type (Doto)** for display lines, numbers and labels on the panel (not the hero's theme, set in Mona Sans: the hero keeps LED to the mark and the day numbers). Its ROND axis is the shape rule: square dots at rest, round dots when fired (CSS can transition it, so it works everywhere).
 - **Color fields as screens of the panel**, alternating: green (campo), black (noite), lime (lima). The border between two fields is a row of pixels, not a straight line.
 - **Ticker:** one black LED strip scrolling the event info, a plain marquee at a steady pace (the scroll and the pointer leave it alone).
 - **Programação is a scoreboard:** day tabs; switching days flips the times like an LED board.
@@ -73,11 +74,11 @@ No secondary grey text on green or lime: hierarchy there comes from size and wei
 ## Grid & rhythm
 
 - 12 columns, fluid gutter; strong lines at col 1, 5 and 9. Phones: 4 columns.
-- Fields: hero (black, 100svh) → ticker (black strip) → sobre (green) → programação + palestras (black) → minicursos (green) → e-sports (lime) → local (black) → inscrição (green) → footer (black).
+- Fields: hero (black) → ticker (black strip) → sobre (green) → programação + palestras (black) → minicursos (green) → e-sports (lime) → local (black) → inscrição (green) → footer (black).
 
 ## Motion
 
-- Hero entrance in CSS (the type rises letter by letter, works before JS); the halftone and its hover in a GL shader, growing from the edge once GL is up, with a static CSS halftone when GL is off.
+- Hero: its blocks settle in, in CSS (works before JS); two soft green lights drift behind it, slowly (16 and 21 s). No WebGL anywhere.
 - Scroll: Doto labels fire as they cross the reading line (CSS transition of `font-variation-settings`).
-- Reduced motion: no GL, no ticker motion, no entrance; fired states stay static.
+- Reduced motion: no drift, no ticker motion, no entrance; fired states stay static.
 - No loader.

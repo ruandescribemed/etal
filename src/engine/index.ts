@@ -10,14 +10,12 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initScroll, jumpTo, resetScroll, startScroll, stopScroll } from './scroll';
 import { initReveals } from './reveal';
-import { initGL } from './gl';
 import { initMagnetic } from './interactions';
 import { playEnter, playLeave } from './transition';
 import { prefersReducedMotion } from './env';
 
 export { onScroll, scrollState, scrollToTarget, stopScroll, startScroll } from './scroll';
 export { setTransition } from './transition';
-export { setBackground, clearBackground, setBackgroundActive, setBackgroundHeight, glSupported } from './gl';
 export { ease, isTouch, isMobile, prefersReducedMotion } from './env';
 
 export type PageFn = (page: { intro: gsap.core.Timeline; path: string }) => void | (() => void);
@@ -47,7 +45,6 @@ export function syncFlags() {
   const h = document.documentElement.classList;
   h.add('js', 'is-booted');
   h.toggle('motion', !prefersReducedMotion());
-  if (document.querySelector('.gl-canvas')) h.add('gl-on');
 }
 
 function initPage() {
@@ -61,14 +58,13 @@ function initPage() {
   requestAnimationFrame(() => ScrollTrigger.refresh());
 }
 
-/** First load. `setup` runs once on the client after scroll/GL init and before the first page:
- *  register setTransition, setBackground and driver modules there. */
+/** First load. `setup` runs once on the client after scroll init and before the first page:
+ *  register setTransition and driver modules there. */
 export function boot(setup?: () => void) {
   if (booted) return;
   booted = true;
   syncFlags();
   initScroll();
-  initGL();
   setup?.();
   initPage();
   document.documentElement.classList.add('is-loaded');

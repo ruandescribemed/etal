@@ -227,68 +227,73 @@ a.cta--outline:hover .cta__dot { scale: 1.6; }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='13.6' y='13.6' width='4.8' height='4.8' fill='%237dd13f' fill-opacity='0.22'/%3E%3C/svg%3E");
 }
 
-/* ── Hero: the panel ──────────────────────────────────────────────────────────────── */
+/* ── Hero: what, when and where, and the three days ───────────────────────────────── */
 .hero {
   display: grid;
-  min-height: 100svh;
-  padding: calc(var(--header-h) + var(--u)) var(--gutter) calc(var(--u) * 3);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: calc(var(--u) * 5);
+  align-items: end;
+  align-content: end;
+  min-height: 88svh;
+  padding: calc(var(--header-h) + var(--u) * 2) var(--gutter) calc(var(--u) * 5);
   overflow: clip;
 }
-html.gl-on .hero { background: transparent; }
-/* The halftone without GL: squares at rest, faded toward the title (the live one shrinks them) */
-.hero__halftone {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='4' width='24' height='24' fill='%235aa323'/%3E%3C/svg%3E");
-  background-size: var(--cell) var(--cell);
-  mask-image: linear-gradient(to right, transparent 58%, #000 97%);
+.hero > :not(.hero__glow) { position: relative; }
+/* Two soft green lights drifting behind the content: the hero's only ambient motion. */
+.hero__glow { position: absolute; inset: 0; pointer-events: none; }
+.hero__glow::before, .hero__glow::after { content: ''; position: absolute; aspect-ratio: 1; border-radius: 50%; }
+.hero__glow::before {
+  width: 75vmax;
+  top: -38vmax;
+  right: -22vmax;
+  background: radial-gradient(closest-side, rgb(90 163 35 / 0.34), rgb(90 163 35 / 0.08) 55%, transparent);
 }
-html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibility: hidden; }
-.hero__inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 1fr auto auto;
-  column-gap: var(--gutter);
-  row-gap: calc(var(--u) * 2);
+.hero__glow::after {
+  width: 60vmax;
+  bottom: -34vmax;
+  right: 12vmax;
+  background: radial-gradient(closest-side, rgb(125 209 63 / 0.16), transparent);
 }
-/* One block at the bottom (mark, then the theme under its LED tag of dates and place); the dark above
-   it is the panel's. */
-.hero__logo { grid-column: 1 / span 3; grid-row: 2; margin-bottom: calc(var(--u) * 2); }
-.hero__logo .logo { width: min(100%, 14rem); }
-.hero__name { display: block; margin-top: calc(var(--u) * 1.25); font-size: var(--t-s); font-weight: 650; color: var(--c-muted); }
-.hero__theme {
-  grid-column: 1 / span 7;
-  grid-row: 3;
-  container-type: inline-size;
-  padding-bottom: calc(var(--u) * 2);
-}
-.hero__label {
-  display: flex;
-  align-items: center;
-  gap: 0.7em;
-  margin-bottom: calc(var(--u) * 1.25);
-  font-size: var(--t-m);
-  color: var(--led);
-}
-.hero__label::before { content: ''; width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--ponto); }
+.motion .hero__glow::before { animation: drift-a 16s ease-in-out infinite alternate; }
+.motion .hero__glow::after { animation: drift-b 21s ease-in-out infinite alternate; }
+@keyframes drift-a { to { translate: -10vmax 8vmax; scale: 1.12; } }
+@keyframes drift-b { to { translate: 14vmax -6vmax; scale: 0.9; } }
+.hero__main { grid-column: 1 / span 7; display: grid; row-gap: calc(var(--u) * 2.5); justify-items: start; }
+.hero__mark { display: grid; justify-items: start; row-gap: calc(var(--u) * 1.25); margin-bottom: calc(var(--u) * 3); }
+.hero__mark .logo { width: clamp(7rem, 5rem + 5vw, 10rem); }
+.hero__name { max-width: 24ch; font-size: var(--t-s); font-weight: 650; line-height: 1.3; color: var(--c-muted); }
 .hero__title {
-  font-size: min(13.9cqi, 20svh);
-  line-height: 0.9;
-  white-space: nowrap;
-  margin-left: -0.03em;
+  margin-left: -0.04em;
+  font-size: clamp(2.8rem, 0.8rem + 6vw, 8rem);
+  font-weight: 760;
+  font-variation-settings: 'wdth' 92;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  text-wrap: balance;
 }
-.hero__line { display: block; }
-/* The panel switching on, in CSS alone before any script: the type rises into place letter by letter,
-   like the titles below; the halftone grows from the edge once GL is up (motion/halftone). */
-.motion .hero__line { clip-path: inset(-0.4em -0.1em 0 -0.1em); }
-.motion .hero__line:nth-child(2) { --line: 1; }
-.motion .hero__char { display: inline-block; animation: rise 1.2s var(--ease-out) calc(100ms + var(--line, 0) * 90ms + var(--i) * 22ms) both; }
-@keyframes rise { from { translate: 0 105%; } }
-.motion .hero__logo .logo { animation: logo-rise 1.2s var(--ease-out) both; }
-@keyframes logo-rise { from { opacity: 0; translate: 0 1rem; } }
-.motion .hero__label, .motion .hero__name { animation: settle 1s var(--ease-out) 0.45s both; }
+.hero__facts { max-width: 54ch; color: var(--noite-muted); }
+.hero__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+/* The days: the number is the one LED here, and it fires with the link. */
+.hero__days { grid-column: 9 / -1; border-bottom: 1px solid var(--c-line); }
+.hero__day {
+  display: grid;
+  grid-template-columns: 3.2ch minmax(0, 1fr) auto;
+  column-gap: 1rem;
+  align-items: center;
+  padding-block: calc(var(--u) * 1.5);
+  border-top: 1px solid var(--c-line);
+}
+.hero__day-num { grid-row: span 2; font-size: var(--t-l); line-height: 1; color: var(--lime); }
+.hero__day-name { font-weight: 700; }
+.hero__day-summary { grid-column: 2; font-size: var(--t-s); color: var(--noite-muted); }
+.hero__day-go { grid-column: 3; grid-row: 1 / span 2; color: var(--lime); transition: translate 0.3s var(--ease-out); }
+.hero__day:hover .hero__day-go, .hero__day:focus-visible .hero__day-go { translate: 0.3rem 0; }
+/* Entrance, in CSS alone: the blocks settle in, one after another. */
+.motion :is(.hero__main > *, .hero__days) { animation: settle 1s var(--ease-out) calc(80ms + var(--d, 0) * 90ms) both; }
+.hero__title, .hero__days { --d: 1; }
+.hero__facts { --d: 2; }
+.hero__acts { --d: 3; }
 @keyframes settle { from { opacity: 0; translate: 0 0.75rem; } }
 .label { display: block; margin-bottom: 0.3rem; font-family: var(--f-display); font-weight: 900; font-size: var(--t-s); text-transform: uppercase; }
 
@@ -582,6 +587,7 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
 
 /* ── Tablets and phones ───────────────────────────────────────────────────────────── */
 @media (max-width: 1023px) {
+  .hero__main, .hero__days { grid-column: 1 / -1; }
   .header__nav { display: none; }
   .header__toggle { display: inline-flex; }
   .talks__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -591,13 +597,8 @@ html.gl-on .hero__halftone, html.motion:not(.is-booted) .hero__halftone { visibi
   .venue__text { grid-column: 7 / -1; }
 }
 @media (max-width: 767px) {
-  .hero__inner { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .hero__logo { grid-column: 1 / -1; margin-top: calc(var(--u) * 1.5); }
-  .hero__logo .logo { width: min(60%, 13rem); }
-  .hero { --cell: 16px; } /* a finer halftone on phones */
-  .hero__halftone { display: none; }
-  .hero__theme { grid-column: 1 / -1; }
-  .hero__label { font-size: var(--t-s); }
+  .hero__mark { margin-bottom: calc(var(--u) * 1.5); }
+  .hero__acts .cta { flex: 1 1 auto; justify-content: center; }
 
   .section-head { grid-template-columns: 1fr; row-gap: calc(var(--u) * 1.5); }
   .section-head .section-title, .section-note { grid-column: 1; }
