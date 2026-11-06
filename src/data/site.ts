@@ -262,6 +262,97 @@ export const courses: Course[] = [
   },
 ];
 
+export const COURSES = [
+  {
+    slug: "desenvolvendo-jogos-com-game-maker",
+    title: "Desenvolvendo jogos com Game Maker",
+    detail: "Conheça as etapas da criação de um jogo e desenvolva o seu próprio protótipo com a engine Game Maker",
+    requirements: "Conhecimentos básicos em lógica e programação.",
+    audience: "Pessoas interessadas em desenvolvimento de jogos.",
+    content: "1. Entendendo os jogos de nave \n> 1.1 Origem\n> 1.2 Funcionamento\n> 1.3 Elementos do jogo\n> 1.4 Análise da estrutura\n\n2. Criação dos objetos\n> 2.1 Criação do jogador\n> 2.2 Criando o inimigo\n> 2.3 Criando o boss\n\n3. Criação do fluxo do jogo\n> 3.1 Implementando loop de gameplay\n> 3.2 Fazendo a montagem\n> 3.3 Criando o fluxo principal\n\n4. Polimento e publicação\n> 4.1 Polimento geral\n> 4.2 Compartilhamento\n> 4.3 Recebendo feedback e criando patches",
+    author: "Caio Enzo Bessa de Oliveira e Kellyson",
+    picture: "/participants/caio-enzo.jpeg",
+    vagas: 30
+  },
+  {
+    slug: "design-e-arquitetura-de-sistemas-entendendo-como-sistemas-escalam-e-se-comunicam",
+    title: "Design e Arquitetura de Sistemas: Entendendo como Sistemas Escalam e se Comunicam",
+    detail: "Esta oficina apresenta os principais conceitos de Design e Arquitetura de Sistemas, explorando como aplicações são estruturadas, se comunicam, distribuem tráfego e lidam com falhas. Serão abordados diferentes modelos arquiteturais, estratégias de escalabilidade, resiliência e gerenciamento de dados, utilizando exemplos práticos e situações reais. O objetivo é proporcionar uma visão geral dos fundamentos de System Design, permitindo que os participantes compreendam os principais trade-offs e saibam identificar soluções adequadas para diferentes problemas.",
+    requirements: "- Conhecimentos básicos de programação.\n- Noções de APIs REST e comunicação HTTP.\n- Conhecimentos básicos de bancos de dados.\n- Familiaridade com desenvolvimento back-end.",
+    audience: "Estudantes e desenvolvedores de software que já possuem conhecimentos básicos de desenvolvimento e desejam ampliar sua compreensão sobre arquitetura de sistemas, escalabilidade e sistemas distribuídos.",
+    content: "1. Introdução ao System Design.\n2. Organização de sistemas: monolitos, monolitos modulares e microsserviços.\n3. Comunicação entre sistemas: REST, gRPC, mensageria e eventos.\n4. Distribuição de tráfego: proxies, load balancers, API Gateways e CDN.\n5. Resiliência e tolerância a falhas em sistemas distribuídos.\n6. Gerenciamento de dados: CAP, CQRS, Event Sourcing e sharding.\n7. Transações distribuídas e padrão Saga.\n8. Desafio prático: projetando um sistema para 1 milhão de usuários.",
+    author: "João Manoel Fontes",
+    picture: null,
+    vagas: null
+  },
+  {
+    slug: "processamento-de-imagens-com-react-native-e-opencv",
+    title: "Processamento de imagens com React Native e OpenCV.",
+    detail: "Desenvolver uma aplicação completa, com mobile e back-end focados em processamento de imagens.",
+    requirements: "1- Conhecimento básico em React Native.\n2- Conhecimento básico em python.\n3- Conhecimento básico em alguma framework de back-end (preferencialmente FastApi)",
+    audience: "Público em geral.",
+    content: "Introdução as configurações básicas do projeto mobile e back.\nTestando o OpenCV.\nCriar um endpint com FastApi.\nExplorar o react native skia e react native gesture handler.\nConsumir o back.\n\nExtra(Se der tempo):\nDocker e TanStack Query.",
+    author: "Adryan Eryk de Oliveira Leite",
+    picture: "/participants/adryan-erik.JPG",
+    vagas: 40
+  },
+  {
+    slug: "git-e-github-sem-medo-do-primeiro-commit-ao-primeiro-conflito",
+    title: "Git e GitHub sem medo: do primeiro commit ao primeiro conflito",
+    detail: "Saber usar Git e GitHub é básico em qualquer time de desenvolvimento, mas muita gente chega ao primeiro estágio ou emprego sabendo só o “add, commit, push” e trava no primeiro conflito. Neste minicurso o participante sai do zero: instala e configura o Git, cria e protege sua conta no GitHub e entende cada comando do dia a dia usando os comandos atuais recomendados pela documentação oficial, como git switch e git restore. Depois, numa prática que sobe de nível, vive situações reais de equipe: trabalhar com branches, abrir pull requests, revisar código, desfazer erros e resolver conflitos de merge. A ideia é que o participante saia pronto para contribuir com segurança em projetos profissionais e open source.",
+    requirements: "Saber o básico de computador (criar pastas, mover e editar arquivos)\nTer um e-mail ativo e com acesso durante o curso, para criar e verificar a conta no GitHub\nTer um celular com app autenticador (Google Authenticator, Authy ou parecido) para ativar a verificação em duas etapas\nNão é preciso saber programar. Ter visto qualquer linguagem ou já ter aberto um terminal ajuda, mas não é obrigatório\n",
+    audience: "Estudantes e jovens profissionais de tecnologia que estão entrando no mercado de trabalho, já ouviram falar de Git e GitHub (ou usam de forma básica) e querem trabalhar de forma profissional e colaborativa.",
+    content: "Controle de versão: o que é e por que o Git virou padrão\nInstalação e configuração inicial (git config, identidade, branch padrão main, editor)\nConta no GitHub: criação, verificação em duas etapas e autenticação (SSH ou token)\nCiclo básico: init, status, add, commit, log, diff\n.gitignore e o que não deve ir para o repositório\nBranches: branch, switch, merge\nRepositórios remotos: clone, remote, fetch, pull, push\nDesfazendo erros: restore, revert, reset e stash\nFluxo de trabalho em equipe: issues, fork, pull request e code review\nConflitos de merge: por que acontecem e como resolver\nBoas práticas: mensagens de commit (Conventional Commits) e organização de branches\nPrática evolutiva em níveis, simulando situações reais de equipe\n",
+    author: "Tallys Cesar Gurgel Batista",
+    picture: null,
+    vagas: null
+  },
+  {
+    slug: "ia-para-programar",
+    title: "IA para programar",
+    detail: null,
+    requirements: null,
+    audience: null,
+    content: null,
+    author: "Heitor",
+    picture: null,
+    vagas: null
+  },
+  {
+    slug: "desenvolvimento-de-aplicacoes-modernas-com-react",
+    title: "Desenvolvimento de Aplicações Modernas com React",
+    detail: "Este minicurso apresenta os principais conceitos, ferramentas e práticas do ecossistema React utilizados no desenvolvimento profissional de aplicações web. Por meio da demonstração de um projeto previamente desenvolvido em diferentes estágios de evolução, serão explorados desde os fundamentos da biblioteca até soluções para gerenciamento de estado, navegação, formulários e integração com APIs. Também serão abordadas boas práticas de organização de código, noções de otimização de performance e testes automatizados, proporcionando uma visão prática de como diferentes tecnologias são utilizadas em conjunto para construir aplicações modernas, organizadas e sustentáveis.",
+    requirements: "- Conhecimentos básicos de HTML, CSS e JavaScript/TypeScript.\n- Noções básicas de Git e GitHub.\n- Node.js, npm, Docker, Docker Compose e editor de código instalados.\n",
+    audience: "Estudantes e desenvolvedores com conhecimentos básicos de desenvolvimento web que desejam conhecer o React ou aprofundar seus conhecimentos sobre a biblioteca, seu ecossistema e as práticas utilizadas no desenvolvimento profissional de aplicações web.",
+    content: "- Introdução ao React: origem, funcionamento e estrutura de projetos.\n- Fundamentos: JSX, componentes, props, eventos e Hooks.\n- Contexto, custom Hooks e noções de performance.\n- Navegação com React Router.\n- Formulários com React Hook Form.\n- Integração com APIs utilizando Axios e TanStack Query.\n- Organização de código e boas práticas de desenvolvimento.\n- Introdução aos testes automatizados com Vitest e React Testing Library.\n",
+    author: "Lucas Nunes",
+    picture: "/participants/lucas-nunes.png",
+    vagas: null
+  },
+  {
+    slug: "database-engineering-na-pratica-problemas-reais-de-bancos-de-dados-em-producao",
+    title: "Database Engineering na prática: problemas reais de bancos de dados em produção",
+    detail: "Quando aprendi os conceitos fundamentais de bancos de dados, como operações CRUD e consultas SQL, senti que já estava preparado para implementar essas funcionalidades nas minhas aplicações. Entretanto, ao desenvolver projetos e ter contato com sistemas reais, percebi que existem problemas que vão muito além do que havia aprendido, o que me levou a estudar conceitos mais avançados e técnicas utilizadas no mercado. Neste minicurso prático, utilizaremos um e-commerce fictício como cenário para explorar quatro problemas comuns em sistemas reais: consultas ineficientes, operações concorrentes, duplicidade de operações e sobrecarga de conexões. Por meio de demonstrações e desafios práticos, os participantes aprenderão a investigar esses problemas utilizando ferramentas do PostgreSQL e aplicar técnicas para solucioná-los, desenvolvendo conhecimentos importantes para a construção de aplicações mais eficientes, confiáveis e escaláveis.",
+    requirements: "Conhecimentos básicos de SQL (SELECT, INSERT, UPDATE e DELETE).\nLógica de programação e noções básicas de python.\nNoções de bancos de dados relacionais.",
+    audience: "Estudantes de cursos técnicos e superiores da área de informática e desenvolvimento de software que possuam conhecimentos básicos de bancos de dados e tenham interesse em aprender técnicas utilizadas na construção de aplicações mais eficientes, confiáveis e escaláveis.",
+    content: "1 Estudo: visão geral do contexto, rodar o docker e ambiente locais. Estudaremos otimização de querys: planos de execução, EXPLAIN ANALYZE, Sequential Scan, Index Scan, criação de índices e problema de N+1.\n2 Estudo: Concorrência e integridade. Race conditions, propriedades ACID, transações, locks e deadlocks.\n3 Estudo: Confiabilidade e idempotência. Operações duplicadas, idempotency keys, constraints de unicidade e estratégias de retry.\n4 Estudo: Gerenciamento de conexões e escalabilidade. Monitoramento com pg_stat_activity, connection pooling, dimensionamento de conexões e introdução ao PgBouncer.",
+    author: "Pedro Henrique Carvalho Sousa",
+    picture: "/participants/pedro-henrique.jpeg",
+    vagas: null
+  },
+  {
+    slug: "como-organizar-suas-tarefas-com-o-notion",
+    title: "Como organizar suas tarefas com o Notion?",
+    detail: "O minicurso “Como organizar suas tarefas com o Notion?” tem como objetivo ensinar os participantes a utilizar o Notion como ferramenta de organização pessoal, acadêmica e profissional.\nPor meio de demonstrações práticas e atividades orientadas, os participantes aprenderão a criar páginas, gerenciar tarefas, estabelecer prioridades, definir prazos e acompanhar o andamento das atividades, desenvolvendo um sistema de planejamento adaptado às suas necessidades. ",
+    requirements: "Conhecimentos básicos de informática.\nFamiliaridade com navegação na internet.\nNão é necessário conhecimento prévio do Notion.\n",
+    audience: "Estudantes, profissionais e pessoas interessadas em melhorar sua organização pessoal, acadêmica e profissional.",
+    content: "1.\tIntrodução ao Notion.\n2.\tConhecendo a interface e os recursos básicos.\n3.\tCriação de páginas e organização de informações.\n4.\tCriação de um sistema de gerenciamento de tarefas.\n5.\tUtilização de filtros e visualizações.\n6.\tProjeto Prático\n",
+    author: "Klaywin Ryan Aquino Dias",
+    picture: null,
+    vagas: null
+  }
+]
+
 export const esports = {
   intro: 'Cinco campeonatos em dois dias: classificatórias na quarta à tarde e finais na quinta de manhã.',
 };
